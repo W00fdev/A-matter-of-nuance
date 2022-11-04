@@ -62,13 +62,11 @@ namespace Logic
             if (_distance + FirstOffset >= Length && _outOfBounds == false)
             {
                 OutOfBoundsEvent?.Invoke();
-                Debug.Log("Out of bounds");
                 _outOfBounds = true;
             }
 
             if (_distance + FirstOffset >= Length + CameraBoundsX + DeathOffsetX)
             {
-                Debug.Log("Bye-bye");
                 Destroy(gameObject);
             }
         }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using Infrastructure;
 using UnityEngine;
 using Data;
 
@@ -18,14 +19,16 @@ namespace Logic
         [Range(0f, 1f)]
         public float trapBuildChance;
 
-        public void EnableManager()
+        public void EnableManager(bool instant)
         {
-            StartCoroutine(FaderBeforeManager());
+            if (instant == false)
+                StartCoroutine(FaderBeforeManager());
+            else
+                StartWrapper();
         }
 
         public void DisableManager()
         {
-
         }
 
         private void BuildFirst()
@@ -38,12 +41,9 @@ namespace Logic
         {
             RoomData nextRoom = GetNextRoom();
             RoomRunner scriptRoom = BuildRoom(nextRoom, !first ? CameraBoundsX.y : CameraBoundsX.x);
-<<<<<<< Updated upstream
-=======
 
             if (Random.value >= trapBuildChance)
                 BuildRandomTrap(scriptRoom);
->>>>>>> Stashed changes
 
             InitializeNewRoom(nextRoom, scriptRoom, firstRoom: first);
         }
@@ -57,26 +57,6 @@ namespace Logic
             scriptRoom.Enable();
         }
 
-        private RoomData GetNextRoom() => Rooms[0];
-
-        private RoomRunner BuildRoom(RoomData room, float positionX) =>
-            Instantiate(room.RoomPrefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
-<<<<<<< Updated upstream
-    
-        IEnumerator FaderBeforeManager()
-        {
-            yield return new WaitForSeconds(Constants.IntroTime);
-            BuildFirst();
-        }
-    }
-
-    public interface IManager
-    {
-        public void EnableManager();
-
-        public void DisableManager();
-=======
-
         private void BuildRandomTrap(RoomRunner room)
         {
             if (trapPrefabs.Count == 0)
@@ -85,6 +65,22 @@ namespace Logic
             Instantiate(trapPrefabs[Random.Range(0, trapPrefabs.Count)],
                         room.trapSpotsContainer.GetChild(Random.Range(0, room.trapSpotsContainer.childCount)));
         }
->>>>>>> Stashed changes
+
+        private RoomData GetNextRoom() => Rooms[0];
+
+        private RoomRunner BuildRoom(RoomData room, float positionX) =>
+            Instantiate(room.RoomPrefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
+    
+
+
+        IEnumerator FaderBeforeManager()
+        {
+            yield return new WaitForSeconds(Constants.IntroTime);
+            
+            StartWrapper();
+        }
+
+        private void StartWrapper() 
+            => BuildFirst();
     }
 }
