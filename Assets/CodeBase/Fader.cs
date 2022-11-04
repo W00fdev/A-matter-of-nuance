@@ -1,9 +1,12 @@
+using Infrastructure;
+using Logic;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Fader : MonoBehaviour
 {
+    public StartScreen startScreen;
     CanvasGroup canvasGroup;
     public void Start()
     {
@@ -11,14 +14,16 @@ public class Fader : MonoBehaviour
     }
     IEnumerator Fade()
     {
-        for (float f = 1f; f >= -0.05f; f -= 0.05f)
+        for (float f = Constants.IntroTime/Constants.IntroTime; f >= 0; f -= 1f/20f)
         {
             canvasGroup.alpha = f;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(1f/20f * Constants.IntroTime);
         }
+        canvasGroup.alpha = 0;
+        startScreen.StartGame();
     }
     public void ToMainScene()
     {
-        StartCoroutine("Fade");
+        StartCoroutine(Fade());
     }
 }

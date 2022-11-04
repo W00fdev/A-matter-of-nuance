@@ -13,7 +13,7 @@ namespace Infrastructure
 
         }
 
-        private void StartGame()
+        public void StartGame()
         {
             foreach (IManager manager in AllManagers)
                 manager.EnableManager();
