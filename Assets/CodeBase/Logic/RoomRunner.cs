@@ -16,6 +16,8 @@ namespace Logic
         [Header("Set the length of the room for spawner")] 
         public float Length; // Sets at spawn (by scriptable object)
 
+        public Transform trapSpotsContainer;
+
         public float Speed
         {
             get => _speed;

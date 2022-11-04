@@ -13,6 +13,10 @@ namespace Logic
         public Vector2 CameraBoundsX;
 
         public List<RoomData> Rooms;
+        public List<GameObject> trapPrefabs;
+
+        [Range(0f, 1f)]
+        public float trapBuildChance;
 
         public void EnableManager()
         {
@@ -34,6 +38,12 @@ namespace Logic
         {
             RoomData nextRoom = GetNextRoom();
             RoomRunner scriptRoom = BuildRoom(nextRoom, !first ? CameraBoundsX.y : CameraBoundsX.x);
+<<<<<<< Updated upstream
+=======
+
+            if (Random.value >= trapBuildChance)
+                BuildRandomTrap(scriptRoom);
+>>>>>>> Stashed changes
 
             InitializeNewRoom(nextRoom, scriptRoom, firstRoom: first);
         }
@@ -46,11 +56,12 @@ namespace Logic
             scriptRoom.Length = nextRoom.Length;
             scriptRoom.Enable();
         }
-        
+
         private RoomData GetNextRoom() => Rooms[0];
 
-        private RoomRunner BuildRoom(RoomData room, float positionX) => 
+        private RoomRunner BuildRoom(RoomData room, float positionX) =>
             Instantiate(room.RoomPrefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
+<<<<<<< Updated upstream
     
         IEnumerator FaderBeforeManager()
         {
@@ -64,5 +75,16 @@ namespace Logic
         public void EnableManager();
 
         public void DisableManager();
+=======
+
+        private void BuildRandomTrap(RoomRunner room)
+        {
+            if (trapPrefabs.Count == 0)
+                return;
+
+            Instantiate(trapPrefabs[Random.Range(0, trapPrefabs.Count)],
+                        room.trapSpotsContainer.GetChild(Random.Range(0, room.trapSpotsContainer.childCount)));
+        }
+>>>>>>> Stashed changes
     }
 }
