@@ -4,15 +4,18 @@ using System;
 
 namespace Logic
 {
-    public class RoomsRun : MonoBehaviour
+    public class RoomRunner : MonoBehaviour
     {
         private readonly InputService _input = InputService.Instance;
 
         [SerializeField] private float _speed;
 
-        [Header("Set the length of the room for spawner")] 
-        public float Length;
+        [HideInInspector] public float FirstOffset; // Sets at spawn
+        [HideInInspector] public float CameraBoundsX; // Sets at spawn
         
+        [Header("Set the length of the room for spawner")] 
+        public float Length; // Sets at spawn (by scriptable object)
+
         public float Speed
         {
             get => _speed;
@@ -24,9 +27,13 @@ namespace Logic
         }
 
         private Vector3 _horizontalVelocity;
+        private float _distance = 0f;
         private bool _enabled = false;
+        private bool _outOfBounds;
 
         public event Action OutOfBoundsEvent;
+        
+        private const float DeathOffsetX = 1.5f;
 
         private void Awake()
         {
@@ -50,12 +57,25 @@ namespace Logic
 
         private void CheckBounds()
         {
+            if (_distance + FirstOffset >= Length && _outOfBounds == false)
+            {
+                OutOfBoundsEvent?.Invoke();
+                Debug.Log("Out of bounds");
+                _outOfBounds = true;
+            }
 
+            if (_distance + FirstOffset >= Length + CameraBoundsX + DeathOffsetX)
+            {
+                Debug.Log("Bye-bye");
+                Destroy(gameObject);
+            }
         }
 
         private void RunRoom()
         {
-            transform.position += _horizontalVelocity * Time.deltaTime;
+            Vector3 runOffset = _horizontalVelocity * Time.deltaTime;
+            transform.position += runOffset;
+            _distance += Mathf.Abs(runOffset.x);
         }
     }
 }
