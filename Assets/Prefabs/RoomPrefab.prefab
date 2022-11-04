@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884799376969602649}
-  - component: {fileID: 1884799376969602654}
+  - component: {fileID: 3845348219886573454}
   m_Layer: 0
   m_Name: RoomPrefab
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1884799376969602654
+--- !u!114 &3845348219886573454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,13 +48,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884799376969602648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aeb6f465befd334e9b2c738206d4ce2, type: 3}
+  m_Script: {fileID: 11500000, guid: e486536081fd1224a9f28e3c39d2d57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  FirstOffset: 0
-  CameraBoundsX: 0
-  Length: 35.95
+  RoomsParent: {fileID: 0}
+  CameraBoundsX: {x: 0, y: 0}
+  Rooms:
+  - {fileID: 11400000, guid: 91b3c27b5cbb7014f9e8ea50961b9c97, type: 2}
 --- !u!1 &1884799377325357324
 GameObject:
   m_ObjectHideFlags: 0

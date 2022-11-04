@@ -1,18 +1,29 @@
-using System.Collections;
+using Logic;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartScreen : MonoBehaviour
+namespace Infrastructure
 {
-    // Start is called before the first frame update
-    void Start()
+    public class StartScreen : MonoBehaviour
     {
-        
-    }
+        public List<MonoBehaviour> AllManagers;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+
+        }
+
+        private void StartGame()
+        {
+            foreach (IManager manager in AllManagers)
+                manager.EnableManager();
+        }
+
+        private void Update()
+        {
+
+        }
     }
 }
+
+
