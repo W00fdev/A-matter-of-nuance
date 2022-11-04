@@ -1,7 +1,6 @@
 using Infrastructure;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Logic
 {
@@ -11,7 +10,8 @@ namespace Logic
 
         [SerializeField] private float _speed;
 
-        public bool Enabled = false;
+        [Header("Set the length of the room for spawner")] 
+        public float Length;
         
         public float Speed
         {
@@ -24,15 +24,18 @@ namespace Logic
         }
 
         private Vector3 _horizontalVelocity;
+        private bool _enabled = false;
 
-        private void Start()
+        public event Action OutOfBoundsEvent;
+
+        private void Awake()
         {
             _horizontalVelocity = new Vector3(-Speed, 0f, 0f);
         }
 
         private void Update()
         {
-            if (Enabled == false)
+            if (_enabled == false)
                 return;
 
             if (_input.IsRunButton())
@@ -41,6 +44,9 @@ namespace Logic
                 CheckBounds();
             }
         }
+
+        public void Enable() => _enabled = true;
+        public void Disable() => _enabled = false;
 
         private void CheckBounds()
         {
