@@ -1,6 +1,7 @@
-using Data;
-using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
+using Data;
 
 namespace Logic.UI
 {

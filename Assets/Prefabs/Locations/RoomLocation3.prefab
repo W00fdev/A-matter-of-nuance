@@ -1113,7 +1113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8783761195057188144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 11.12, z: 0.51}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   _speed: 3
   FirstOffset: 0
   CameraBoundsX: 0
-  Length: 35.7
+  Length: 35.473
   DecorPrefabsContainer: []
   TrapPrefabsContainer: []
   trapSpotsContainer: {fileID: 8783761195914615903}
