@@ -578,15 +578,13 @@ MonoBehaviour:
   _speed: 3
   FirstOffset: 0
   CameraBoundsX: 0
-  Length: 35.54
+  Length: 35.48
   DecorPrefabsContainer: []
   TrapPrefabsContainer:
   - {fileID: 3377663958652592246, guid: be4027d20a97b634cac88b8e7d6c639b, type: 3}
   trapSpotsContainer: {fileID: 1510984675745463704}
   decorSpotsContainer: {fileID: 7155036177603154181}
   scrollContainer: {fileID: 7155036179146448022}
-  TrapBuildChance: 0.3
-  DecorBuildChance: 0.4
 --- !u!1 &1510984677154005782
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,8 +642,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510984677442111713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.888, y: 1.4421, z: 0}
-  m_LocalScale: {x: 1.7363023, y: 1.7032593, z: 1.7032593}
+  m_LocalPosition: {x: 8.888, y: 1.4808, z: 0}
+  m_LocalScale: {x: 1.7363023, y: 1.7357357, z: 1.7032593}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1510984676434174884}
@@ -1013,8 +1011,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898995432473334154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.888, y: 1.4421, z: 0}
-  m_LocalScale: {x: 1.7363023, y: 1.7032593, z: 1.7032593}
+  m_LocalPosition: {x: 8.888, y: 1.4808, z: 0}
+  m_LocalScale: {x: 1.7363023, y: 1.7357357, z: 1.7032593}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1898995432897052900}
@@ -1180,7 +1178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898995432897052903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.7758, y: 0, z: 0}
+  m_LocalPosition: {x: 17.74, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

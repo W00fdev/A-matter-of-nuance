@@ -42,7 +42,7 @@ namespace Logic
         public event Action<float> OutOfBoundsEvent;
         
         private const float DeathOffsetX = 1.5f;
-        private const float JointOffsetConnection = 0.003f;
+        private const float JointOffsetConnection = 0.008f;
 
         private void Awake()
         {
