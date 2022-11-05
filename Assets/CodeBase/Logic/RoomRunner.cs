@@ -33,9 +33,10 @@ namespace Logic
         private bool _enabled = false;
         private bool _outOfBounds;
 
-        public event Action OutOfBoundsEvent;
+        public event Action<float> OutOfBoundsEvent;
         
         private const float DeathOffsetX = 1.5f;
+        private const float JointOffsetConnection = 0.003f;
 
         private void Awake()
         {
@@ -59,13 +60,15 @@ namespace Logic
 
         private void CheckBounds()
         {
-            if (_distance + FirstOffset >= Length && _outOfBounds == false)
+            float offsetJoint2D = _distance + FirstOffset - Length;
+            if (offsetJoint2D >= 0 && _outOfBounds == false)
             {
-                OutOfBoundsEvent?.Invoke();
+                // Merge objects smoothly
+                OutOfBoundsEvent?.Invoke(offsetJoint2D + JointOffsetConnection);
                 _outOfBounds = true;
             }
 
-            if (_distance + FirstOffset >= Length + CameraBoundsX + DeathOffsetX)
+            if (offsetJoint2D >= CameraBoundsX + DeathOffsetX)
             {
                 Destroy(gameObject);
             }

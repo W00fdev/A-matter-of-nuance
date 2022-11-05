@@ -32,26 +32,26 @@ namespace Logic
         }
 
         private void BuildFirst()
-            => BuildNewRoom(first: true);
+            => BuildNewRoom(0f, first: true);
 
-        private void BuildNext()
-            => BuildNewRoom();
+        private void BuildNext(float offsetJoint2D)
+            => BuildNewRoom(offsetJoint2D);
 
-        private void BuildNewRoom(bool first = false)
+        private void BuildNewRoom(float offsetJoint2D, bool first = false)
         {
             RoomData nextRoom = GetNextRoom();
-            RoomRunner scriptRoom = BuildRoom(nextRoom, !first ? CameraBoundsX.y : CameraBoundsX.x);
+            RoomRunner scriptRoom = BuildRoom(nextRoom, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
 
             if (Random.value >= trapBuildChance)
                 BuildRandomTrap(scriptRoom);
 
-            InitializeNewRoom(nextRoom, scriptRoom, firstRoom: first);
+            InitializeNewRoom(nextRoom, scriptRoom, offsetJoint2D, firstRoom: first);
         }
 
-        private void InitializeNewRoom(RoomData nextRoom, RoomRunner scriptRoom, bool firstRoom = false)
+        private void InitializeNewRoom(RoomData nextRoom, RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
         {
             scriptRoom.OutOfBoundsEvent += BuildNext;
-            scriptRoom.FirstOffset = (firstRoom == false) ? 0f : Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
+            scriptRoom.FirstOffset = (firstRoom == false) ? offsetJoint2D : Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.CameraBoundsX = Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.Length = nextRoom.Length;
             scriptRoom.Enable();
