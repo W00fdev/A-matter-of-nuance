@@ -885,6 +885,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 418270754}
     m_Modifications:
+    - target: {fileID: 1307631317, guid: cf1777c552664474baa246f110745b91, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -6002330430843529326, guid: b21b843d7d3510d4db09cff2bc79a976, type: 2}
     - target: {fileID: 7618318608825051405, guid: cf1777c552664474baa246f110745b91, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -972,10 +976,6 @@ PrefabInstance:
     - target: {fileID: 7618318608825051406, guid: cf1777c552664474baa246f110745b91, type: 3}
       propertyPath: m_Name
       value: Scroll Popup
-      objectReference: {fileID: 0}
-    - target: {fileID: 7618318608825051406, guid: cf1777c552664474baa246f110745b91, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf1777c552664474baa246f110745b91, type: 3}
