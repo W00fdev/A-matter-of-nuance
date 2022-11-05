@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Waypointer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public bool HideMe = false;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (HideMe == true)
+            GetComponent<SpriteRenderer>().enabled = false;   
     }
 }

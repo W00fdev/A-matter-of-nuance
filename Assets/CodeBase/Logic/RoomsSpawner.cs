@@ -14,7 +14,6 @@ namespace Logic
         public Vector2 CameraBoundsX;
 
         public List<GameObject> RoomPrefabs;
-        public List<GameObject> trapPrefabs;
 
         public UnityEvent<RoomRunner> onRoomSpawned;
 
@@ -52,12 +51,9 @@ namespace Logic
 
         private void InitializeDecor(RoomRunner scriptRoom)
         {
-/*            for (int i = 0; i < length; i++)
-            {
-
-            }*/
-            if (Random.value >= scriptRoom.DecorBuildChance)
-                BuildRandomDecor(scriptRoom);
+            for (int i = 0; i < scriptRoom.decorSpotsContainer.childCount; i++)
+                if (Random.value >= scriptRoom.DecorBuildChance)
+                    BuildRandomDecor(scriptRoom, waypointIndex: i);
         }
 
         private void InitializeNewRoom(RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
@@ -71,21 +67,23 @@ namespace Logic
 
         private void BuildRandomTrap(RoomRunner room)
         {
-            if (trapPrefabs.Count == 0)
-                return;
-
-            Instantiate(trapPrefabs[Random.Range(0, trapPrefabs.Count)],
-                        room.trapSpotsContainer.GetChild(Random.Range(0, room.trapSpotsContainer.childCount)));
+            int waypointIndex = Random.Range(0, room.trapSpotsContainer.childCount);
+            BuildRandomTrapOrDecor(room.TrapPrefabsContainer, room.trapSpotsContainer, waypointIndex);
         }
 
-        private void BuildRandomDecor(RoomRunner room)
+        private void BuildRandomDecor(RoomRunner room, int waypointIndex) 
+            => BuildRandomTrapOrDecor(room.DecorPrefabsContainer, room.decorSpotsContainer, waypointIndex);
+
+        private void BuildRandomTrapOrDecor(List<GameObject> prefabs, Transform spotParent, int waypointIndex)
         {
-            int decorsCount = room.DecorContainer.Count;
-            if (decorsCount == 0)
+            if (prefabs == null)
+                return; 
+
+            int count = prefabs.Count;
+            if (count == 0)
                 return;
 
-            Instantiate(room.DecorContainer[Random.Range(0, decorsCount)],
-                        room.decorSpotsContainer.GetChild(Random.Range(0, room.decorSpotsContainer.childCount)));
+            Instantiate(prefabs[Random.Range(0, count)], spotParent.GetChild(waypointIndex));
         }
 
         private RoomRunner GetNextRoom() => RoomPrefabs[0/*Random.Range(0, RoomPrefabs.Count)*/].GetComponent<RoomRunner>();

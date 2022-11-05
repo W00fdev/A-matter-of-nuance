@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using Infrastructure;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 
 namespace Logic
 {
@@ -17,8 +17,8 @@ namespace Logic
         [Header("Set the length of the room for spawner")] 
         public float Length; // Sets at spawn (by scriptable object)
 
-        public List<GameObject> DecorContainer;
-        public List<GameObject> TrapsContainer;
+        public List<GameObject> DecorPrefabsContainer;
+        public List<GameObject> TrapPrefabsContainer;
 
         public Transform trapSpotsContainer;
         public Transform decorSpotsContainer;

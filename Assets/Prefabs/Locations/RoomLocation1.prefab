@@ -123,13 +123,14 @@ MonoBehaviour:
   FirstOffset: 0
   CameraBoundsX: 0
   Length: 35.54
-  DecorContainer: []
-  TrapsContainer: []
+  DecorPrefabsContainer: []
+  TrapPrefabsContainer:
+  - {fileID: 3377663958652592246, guid: be4027d20a97b634cac88b8e7d6c639b, type: 3}
   trapSpotsContainer: {fileID: 4555188899084305622}
-  decorSpotsContainer: {fileID: 0}
+  decorSpotsContainer: {fileID: 5225472833991092299}
   scrollContainer: {fileID: 5225472833520625112}
-  TrapBuildChance: 0
-  DecorBuildChance: 0
+  TrapBuildChance: 0.15
+  DecorBuildChance: 0.3
 --- !u!1 &4555188898117330888
 GameObject:
   m_ObjectHideFlags: 0
