@@ -124,11 +124,12 @@ MonoBehaviour:
   CameraBoundsX: 0
   Length: 35.54
   DecorContainer: []
+  TrapsContainer: []
   trapSpotsContainer: {fileID: 4555188899084305622}
-  additionalSpotsContainer: {fileID: 0}
-  DecorAndTrapConflicted: 0
+  decorSpotsContainer: {fileID: 0}
+  scrollContainer: {fileID: 5225472833520625112}
   TrapBuildChance: 0
-  AdditionalBuildChance: 0
+  DecorBuildChance: 0
 --- !u!1 &4555188898117330888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2038,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5702316746537530540, guid: 11e1fe1c1ca468d40bf001613c88ecb6, type: 3}
   m_PrefabInstance: {fileID: 5225472833940648190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &551173106796659797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5702316746537530539, guid: 11e1fe1c1ca468d40bf001613c88ecb6, type: 3}
+  m_PrefabInstance: {fileID: 5225472833940648190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8793619551972472436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551173106796659797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44d49c5650c8434b821488f01f59e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 551173106796659797}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &5225472834353248579
 PrefabInstance:
   m_ObjectHideFlags: 0

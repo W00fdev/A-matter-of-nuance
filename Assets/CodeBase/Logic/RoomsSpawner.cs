@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Infrastructure;
 using UnityEngine;
-using Data;
+using UnityEngine.Events;
 
 namespace Logic
 {
@@ -16,6 +16,8 @@ namespace Logic
         public List<GameObject> RoomPrefabs;
         public List<GameObject> trapPrefabs;
 
+        public UnityEvent<RoomRunner> onRoomSpawned;
+
         public void EnableManager(bool instant)
         {
             if (instant == false)
@@ -24,9 +26,7 @@ namespace Logic
                 StartWrapper();
         }
 
-        public void DisableManager()
-        {
-        }
+        public void DisableManager() { }
 
         private void BuildFirst()
             => BuildNewRoom(0f, first: true);
@@ -36,12 +36,12 @@ namespace Logic
 
         private void BuildNewRoom(float offsetJoint2D, bool first = false)
         {
-            RoomData nextRoom = GetNextRoom();
-            RoomRunner scriptRoom = BuildRoom(nextRoom, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
+            RoomRunner roomPrefab = GetNextRoom();
+            RoomRunner room = BuildRoom(roomPrefab, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
             
-            InitializeTraps(scriptRoom);
-            InitializeDecor(scriptRoom);
-            InitializeNewRoom(nextRoom, scriptRoom, offsetJoint2D, firstRoom: first);
+            InitializeTraps(room);
+            InitializeDecor(room);
+            InitializeNewRoom(room, offsetJoint2D, firstRoom: first);
         }
 
         private void InitializeTraps(RoomRunner scriptRoom)
@@ -60,13 +60,13 @@ namespace Logic
                 BuildRandomDecor(scriptRoom);
         }
 
-        private void InitializeNewRoom(RoomData nextRoom, RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
+        private void InitializeNewRoom(RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
         {
             scriptRoom.OutOfBoundsEvent += BuildNext;
             scriptRoom.FirstOffset = (firstRoom == false) ? offsetJoint2D : Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.CameraBoundsX = Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
-            scriptRoom.Length = nextRoom.Length;
             scriptRoom.Enable();
+            onRoomSpawned.Invoke(scriptRoom);
         }
 
         private void BuildRandomTrap(RoomRunner room)
@@ -88,10 +88,10 @@ namespace Logic
                         room.decorSpotsContainer.GetChild(Random.Range(0, room.decorSpotsContainer.childCount)));
         }
 
-        private RoomData GetNextRoom() => RoomPrefabs[0/*Random.Range(0, RoomPrefabs.Count)*/].GetComponent<RoomData>();
+        private RoomRunner GetNextRoom() => RoomPrefabs[0/*Random.Range(0, RoomPrefabs.Count)*/].GetComponent<RoomRunner>();
 
-        private RoomRunner BuildRoom(RoomData room, float positionX) =>
-            Instantiate(room.RoomPrefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
+        private RoomRunner BuildRoom(RoomRunner prefab, float positionX) =>
+            Instantiate(prefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
     
         IEnumerator FaderBeforeManager()
         {

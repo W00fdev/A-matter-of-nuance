@@ -22,10 +22,11 @@ namespace Logic
 
         public Transform trapSpotsContainer;
         public Transform decorSpotsContainer;
+        public Transform scrollContainer;
 
         //public bool DecorAndTrapConflicted;
-        [Range(0f, 100f)] public float TrapBuildChance;
-        [Range(0f, 100f)] public float DecorBuildChance;
+        [Range(0f, 1f)] public float TrapBuildChance;
+        [Range(0f, 1f)] public float DecorBuildChance;
 
         public float Speed
         {
