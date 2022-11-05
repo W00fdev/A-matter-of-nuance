@@ -15,6 +15,7 @@ public class ButtonPressed : MonoBehaviour
     public Animator animator2;
     public Button button;
     public TextMeshProUGUI text;
+
     public void Start()
     {
         red.SetActive(false);
@@ -28,6 +29,7 @@ public class ButtonPressed : MonoBehaviour
         green.SetActive(true);
         no.SetActive(false);
         StartCoroutine(TextFade());
+
     }
     public void NoPressed()
     {
