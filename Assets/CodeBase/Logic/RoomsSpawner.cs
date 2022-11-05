@@ -17,6 +17,10 @@ namespace Logic
 
         public UnityEvent<RoomRunner> onRoomSpawned;
 
+        // 0..1f, next it'll be changed by progressManager
+        public float TrapBuildChance = 0.3f;
+        public float DecorBuildChance = 0.43f;
+
         public void EnableManager(bool instant)
         {
             if (instant == false)
@@ -45,14 +49,14 @@ namespace Logic
 
         private void InitializeTraps(RoomRunner scriptRoom)
         {
-            if (Random.value >= scriptRoom.TrapBuildChance)
+            if (Random.value >= TrapBuildChance)
                 BuildRandomTrap(scriptRoom);
         }
 
         private void InitializeDecor(RoomRunner scriptRoom)
         {
             for (int i = 0; i < scriptRoom.decorSpotsContainer.childCount; i++)
-                if (Random.value >= scriptRoom.DecorBuildChance)
+                if (Random.value >= DecorBuildChance)
                     BuildRandomDecor(scriptRoom, waypointIndex: i);
         }
 
@@ -86,7 +90,7 @@ namespace Logic
             Instantiate(prefabs[Random.Range(0, count)], spotParent.GetChild(waypointIndex));
         }
 
-        private RoomRunner GetNextRoom() => RoomPrefabs[0/*Random.Range(0, RoomPrefabs.Count)*/].GetComponent<RoomRunner>();
+        private RoomRunner GetNextRoom() => RoomPrefabs[Random.Range(0, RoomPrefabs.Count)].GetComponent<RoomRunner>();
 
         private RoomRunner BuildRoom(RoomRunner prefab, float positionX) =>
             Instantiate(prefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
