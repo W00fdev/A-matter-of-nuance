@@ -1,6 +1,7 @@
 using Infrastructure;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace Logic
 {
@@ -16,7 +17,14 @@ namespace Logic
         [Header("Set the length of the room for spawner")] 
         public float Length; // Sets at spawn (by scriptable object)
 
+        public List<GameObject> DecorContainer;
+
         public Transform trapSpotsContainer;
+        public Transform additionalSpotsContainer;
+
+        public bool DecorAndTrapConflicted;
+        [Range(0f, 100f)] public float TrapBuildChance;
+        [Range(0f, 100f)] public float AdditionalBuildChance;
 
         public float Speed
         {
@@ -52,6 +60,20 @@ namespace Logic
             {
                 RunRoom();
                 CheckBounds();
+            }
+        }
+
+        private void OnValidate()
+        {
+            if (DecorAndTrapConflicted == false)
+                return;
+
+            if (TrapBuildChance + AdditionalBuildChance > 100)
+            {
+                if (TrapBuildChance > AdditionalBuildChance)
+                    AdditionalBuildChance = 100f - TrapBuildChance;
+                else
+                    TrapBuildChance = 100f - AdditionalBuildChance;
             }
         }
 

@@ -16,9 +16,6 @@ namespace Logic
         public List<RoomData> Rooms;
         public List<GameObject> trapPrefabs;
 
-        [Range(0f, 1f)]
-        public float trapBuildChance;
-
         public void EnableManager(bool instant)
         {
             if (instant == false)
@@ -42,8 +39,21 @@ namespace Logic
             RoomData nextRoom = GetNextRoom();
             RoomRunner scriptRoom = BuildRoom(nextRoom, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
 
-            if (Random.value >= trapBuildChance)
-                BuildRandomTrap(scriptRoom);
+            if (scriptRoom.DecorAndTrapConflicted == true)
+            {
+                if (Random.value >= scriptRoom.TrapBuildChance)
+                    BuildRandomTrap(scriptRoom);
+                else if (Random.value >= scriptRoom.AdditionalBuildChance)
+                    BuildRandomDecor(scriptRoom);
+            }
+            else
+            {
+                if (Random.value >= scriptRoom.TrapBuildChance)
+                    BuildRandomTrap(scriptRoom);
+                
+                if (Random.value >= scriptRoom.AdditionalBuildChance)
+                    BuildRandomDecor(scriptRoom);
+            }
 
             InitializeNewRoom(nextRoom, scriptRoom, offsetJoint2D, firstRoom: first);
         }
@@ -64,6 +74,16 @@ namespace Logic
 
             Instantiate(trapPrefabs[Random.Range(0, trapPrefabs.Count)],
                         room.trapSpotsContainer.GetChild(Random.Range(0, room.trapSpotsContainer.childCount)));
+        }
+
+        private void BuildRandomDecor(RoomRunner room)
+        {
+            int decorsCount = room.DecorContainer.Count;
+            if (decorsCount == 0)
+                return;
+
+            Instantiate(room.DecorContainer[Random.Range(0, decorsCount)],
+                        room.additionalSpotsContainer.GetChild(Random.Range(0, room.additionalSpotsContainer.childCount)));
         }
 
         private RoomData GetNextRoom() => Rooms[0];
