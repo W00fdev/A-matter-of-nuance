@@ -13,7 +13,7 @@ namespace Logic
         [Header("Set X's of camera left and right bounds")]
         public Vector2 CameraBoundsX;
 
-        public List<RoomData> Rooms;
+        public List<GameObject> RoomPrefabs;
         public List<GameObject> trapPrefabs;
 
         public void EnableManager(bool instant)
@@ -38,24 +38,26 @@ namespace Logic
         {
             RoomData nextRoom = GetNextRoom();
             RoomRunner scriptRoom = BuildRoom(nextRoom, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
-
-            if (scriptRoom.DecorAndTrapConflicted == true)
-            {
-                if (Random.value >= scriptRoom.TrapBuildChance)
-                    BuildRandomTrap(scriptRoom);
-                else if (Random.value >= scriptRoom.AdditionalBuildChance)
-                    BuildRandomDecor(scriptRoom);
-            }
-            else
-            {
-                if (Random.value >= scriptRoom.TrapBuildChance)
-                    BuildRandomTrap(scriptRoom);
-                
-                if (Random.value >= scriptRoom.AdditionalBuildChance)
-                    BuildRandomDecor(scriptRoom);
-            }
-
+            
+            InitializeTraps(scriptRoom);
+            InitializeDecor(scriptRoom);
             InitializeNewRoom(nextRoom, scriptRoom, offsetJoint2D, firstRoom: first);
+        }
+
+        private void InitializeTraps(RoomRunner scriptRoom)
+        {
+            if (Random.value >= scriptRoom.TrapBuildChance)
+                BuildRandomTrap(scriptRoom);
+        }
+
+        private void InitializeDecor(RoomRunner scriptRoom)
+        {
+/*            for (int i = 0; i < length; i++)
+            {
+
+            }*/
+            if (Random.value >= scriptRoom.DecorBuildChance)
+                BuildRandomDecor(scriptRoom);
         }
 
         private void InitializeNewRoom(RoomData nextRoom, RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
@@ -83,16 +85,14 @@ namespace Logic
                 return;
 
             Instantiate(room.DecorContainer[Random.Range(0, decorsCount)],
-                        room.additionalSpotsContainer.GetChild(Random.Range(0, room.additionalSpotsContainer.childCount)));
+                        room.decorSpotsContainer.GetChild(Random.Range(0, room.decorSpotsContainer.childCount)));
         }
 
-        private RoomData GetNextRoom() => Rooms[0];
+        private RoomData GetNextRoom() => RoomPrefabs[0/*Random.Range(0, RoomPrefabs.Count)*/].GetComponent<RoomData>();
 
         private RoomRunner BuildRoom(RoomData room, float positionX) =>
             Instantiate(room.RoomPrefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
     
-
-
         IEnumerator FaderBeforeManager()
         {
             yield return new WaitForSeconds(Constants.IntroTime);

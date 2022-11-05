@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34fee9c5e7e7ab4a8b6201ed4922162, type: 3}
   m_Name: RoomLocation1
   m_EditorClassIdentifier: 
-  RoomPrefab: {fileID: 1141955809971609434, guid: b5c405cc0f154684aa82e00c8347fc60, type: 3}
-  Length: 17.78
+  RoomPrefab: {fileID: 4555188898096895417, guid: b5c405cc0f154684aa82e00c8347fc60, type: 3}
+  Length: 35.54

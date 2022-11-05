@@ -18,13 +18,14 @@ namespace Logic
         public float Length; // Sets at spawn (by scriptable object)
 
         public List<GameObject> DecorContainer;
+        public List<GameObject> TrapsContainer;
 
         public Transform trapSpotsContainer;
-        public Transform additionalSpotsContainer;
+        public Transform decorSpotsContainer;
 
-        public bool DecorAndTrapConflicted;
+        //public bool DecorAndTrapConflicted;
         [Range(0f, 100f)] public float TrapBuildChance;
-        [Range(0f, 100f)] public float AdditionalBuildChance;
+        [Range(0f, 100f)] public float DecorBuildChance;
 
         public float Speed
         {
@@ -63,19 +64,19 @@ namespace Logic
             }
         }
 
-        private void OnValidate()
+        /*private void OnValidate()
         {
-            if (DecorAndTrapConflicted == false)
-                return;
+            //if (DecorAndTrapConflicted == false)
+            return;
 
-            if (TrapBuildChance + AdditionalBuildChance > 100)
+            if (TrapBuildChance + DecorBuildChance > 100)
             {
-                if (TrapBuildChance > AdditionalBuildChance)
-                    AdditionalBuildChance = 100f - TrapBuildChance;
+                if (TrapBuildChance > DecorBuildChance)
+                    DecorBuildChance = 100f - TrapBuildChance;
                 else
-                    TrapBuildChance = 100f - AdditionalBuildChance;
+                    TrapBuildChance = 100f - DecorBuildChance;
             }
-        }
+        }*/
 
         public void Enable() => _enabled = true;
         public void Disable() => _enabled = false;
