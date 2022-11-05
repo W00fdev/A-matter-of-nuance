@@ -15,12 +15,14 @@ namespace Logic
 
         private void Start() => _scrollsData = Resources.LoadAll<ScrollData>("Scrolls");
 
+        // listener for RoomsSpawner.onRoomSpawned
         public void HandleNewRoom(RoomRunner room)
         {
             var adapter = room.scrollContainer.GetComponentInChildren<TriggerEventAdapter>();
             adapter.onEnter.AddListener(Spawn);
         }
 
+        // calls when unit and scroll collides
         private void Spawn(GameObject gameObject)
         {
             Unit unit = gameObject.GetComponent<Unit>();

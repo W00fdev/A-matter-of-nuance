@@ -1145,9 +1145,7 @@ MonoBehaviour:
   TrapPrefabsContainer: []
   trapSpotsContainer: {fileID: 8783761195914615903}
   decorSpotsContainer: {fileID: 492459752268969330}
-  scrollContainer: {fileID: 0}
-  TrapBuildChance: 0.3
-  DecorBuildChance: 0.75
+  scrollContainer: {fileID: 1653732776203087900}
 --- !u!1 &8783761195238006975
 GameObject:
   m_ObjectHideFlags: 0
