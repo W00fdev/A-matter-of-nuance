@@ -690,9 +690,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.46666667
-    functionName: PlayShtamp
+    functionName: PlayStamp
     data: 
-    objectReferenceParameter: {fileID: 7618318608825051406, guid: cf1777c552664474baa246f110745b91, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
