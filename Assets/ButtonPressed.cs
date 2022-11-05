@@ -8,29 +8,44 @@ public class ButtonPressed : MonoBehaviour
 {
     public GameObject green;
     public GameObject red;
+    public GameObject yes;
+    public GameObject no;
+    public GameObject comment;
     public Animator animator1;
     public Animator animator2;
     public Button button;
-    TextMeshProUGUI text;
+    public TextMeshProUGUI text;
     public void Start()
     {
-        green.SetActive(false);
         red.SetActive(false);
+        green.SetActive(false);
     }
-    public void Pressed()
+    public void YesPressed()
     {
+        comment.SetActive(false);
         GetComponent<Image>().enabled = false;
+        GetComponent<UIComments>().enabled = false;
         green.SetActive(true);
+        no.SetActive(false);
+        StartCoroutine(TextFade());
+    }
+    public void NoPressed()
+    {
+        comment.SetActive(false);
+        GetComponent<Image>().enabled = false;
+        GetComponent<UIComments>().enabled = false;
         red.SetActive(true);
+        yes.SetActive(false);
         StartCoroutine(TextFade());
     }
     IEnumerator TextFade()
     {
 
-        for(float i = 1f; i > 0f; i-=0.05f)
+        for(float i = 1f; i >= 0f; i-=0.05f)
         {
-            text.alpha-= i;
+            text.color = new Color(text.color.r,text.color.g,text.color.b,i);
+            yield return new WaitForSeconds(0.05f);
         }
-        yield return new WaitForSeconds(0.05f);
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
     }
 }
