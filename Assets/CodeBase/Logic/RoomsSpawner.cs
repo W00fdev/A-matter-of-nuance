@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Infrastructure;
 using UnityEngine;
-using Data;
+using UnityEngine.Events;
 
 namespace Logic
 {
@@ -13,11 +13,9 @@ namespace Logic
         [Header("Set X's of camera left and right bounds")]
         public Vector2 CameraBoundsX;
 
-        public List<RoomData> Rooms;
-        public List<GameObject> trapPrefabs;
+        public List<GameObject> RoomPrefabs;
 
-        [Range(0f, 1f)]
-        public float trapBuildChance;
+        public UnityEvent<RoomRunner> onRoomSpawned;
 
         public void EnableManager(bool instant)
         {
@@ -27,9 +25,7 @@ namespace Logic
                 StartWrapper();
         }
 
-        public void DisableManager()
-        {
-        }
+        public void DisableManager() { }
 
         private void BuildFirst()
             => BuildNewRoom(0f, first: true);
@@ -39,40 +35,62 @@ namespace Logic
 
         private void BuildNewRoom(float offsetJoint2D, bool first = false)
         {
-            RoomData nextRoom = GetNextRoom();
-            RoomRunner scriptRoom = BuildRoom(nextRoom, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
-
-            if (Random.value >= trapBuildChance)
-                BuildRandomTrap(scriptRoom);
-
-            InitializeNewRoom(nextRoom, scriptRoom, offsetJoint2D, firstRoom: first);
+            RoomRunner roomPrefab = GetNextRoom();
+            RoomRunner room = BuildRoom(roomPrefab, (!first ? CameraBoundsX.y : CameraBoundsX.x) - offsetJoint2D);
+            
+            InitializeTraps(room);
+            InitializeDecor(room);
+            InitializeNewRoom(room, offsetJoint2D, firstRoom: first);
         }
 
-        private void InitializeNewRoom(RoomData nextRoom, RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
+        private void InitializeTraps(RoomRunner scriptRoom)
+        {
+            if (Random.value >= scriptRoom.TrapBuildChance)
+                BuildRandomTrap(scriptRoom);
+        }
+
+        private void InitializeDecor(RoomRunner scriptRoom)
+        {
+            for (int i = 0; i < scriptRoom.decorSpotsContainer.childCount; i++)
+                if (Random.value >= scriptRoom.DecorBuildChance)
+                    BuildRandomDecor(scriptRoom, waypointIndex: i);
+        }
+
+        private void InitializeNewRoom(RoomRunner scriptRoom, float offsetJoint2D, bool firstRoom = false)
         {
             scriptRoom.OutOfBoundsEvent += BuildNext;
             scriptRoom.FirstOffset = (firstRoom == false) ? offsetJoint2D : Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.CameraBoundsX = Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
-            scriptRoom.Length = nextRoom.Length;
             scriptRoom.Enable();
+            onRoomSpawned.Invoke(scriptRoom);
         }
 
         private void BuildRandomTrap(RoomRunner room)
         {
-            if (trapPrefabs.Count == 0)
-                return;
-
-            Instantiate(trapPrefabs[Random.Range(0, trapPrefabs.Count)],
-                        room.trapSpotsContainer.GetChild(Random.Range(0, room.trapSpotsContainer.childCount)));
+            int waypointIndex = Random.Range(0, room.trapSpotsContainer.childCount);
+            BuildRandomTrapOrDecor(room.TrapPrefabsContainer, room.trapSpotsContainer, waypointIndex);
         }
 
-        private RoomData GetNextRoom() => Rooms[0];
+        private void BuildRandomDecor(RoomRunner room, int waypointIndex) 
+            => BuildRandomTrapOrDecor(room.DecorPrefabsContainer, room.decorSpotsContainer, waypointIndex);
 
-        private RoomRunner BuildRoom(RoomData room, float positionX) =>
-            Instantiate(room.RoomPrefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
+        private void BuildRandomTrapOrDecor(List<GameObject> prefabs, Transform spotParent, int waypointIndex)
+        {
+            if (prefabs == null)
+                return; 
+
+            int count = prefabs.Count;
+            if (count == 0)
+                return;
+
+            Instantiate(prefabs[Random.Range(0, count)], spotParent.GetChild(waypointIndex));
+        }
+
+        private RoomRunner GetNextRoom() => RoomPrefabs[0/*Random.Range(0, RoomPrefabs.Count)*/].GetComponent<RoomRunner>();
+
+        private RoomRunner BuildRoom(RoomRunner prefab, float positionX) =>
+            Instantiate(prefab, new Vector3(positionX, 0f, 0f), Quaternion.identity, RoomsParent).GetComponent<RoomRunner>();
     
-
-
         IEnumerator FaderBeforeManager()
         {
             yield return new WaitForSeconds(Constants.IntroTime);

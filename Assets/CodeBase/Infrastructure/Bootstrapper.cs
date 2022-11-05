@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Infrastructure
@@ -17,7 +18,7 @@ namespace Infrastructure
 
         public void StartGame(bool instant)
         {
-            foreach (IManager manager in AllManagers)
+            foreach (IManager manager in AllManagers.Cast<IManager>())
                 manager.EnableManager(instant);
         }
     }
