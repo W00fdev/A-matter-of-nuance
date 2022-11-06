@@ -19,7 +19,7 @@ namespace Logic.Actors
 
         public UnityEvent onKingDied;
 
-        public bool isFreezed;
+        public static bool isFreezed;
 
         public Unit GetKing() => actorSpotsContainer.GetChild(0).GetComponentInChildren<Unit>();
         public Unit GetTraitor() => actorSpotsContainer.GetChild(1).GetComponentInChildren<Unit>();
@@ -36,6 +36,14 @@ namespace Logic.Actors
 
         private void Start() => GetKing().DiedEvent += OnKingDied;
 
+        private void Update()
+        {
+            Unit unit = GetTraitor();
+            if (unit == null)
+                return;
+
+            unit.NO(isFreezed);
+        }
         private void OnKingDied()
         {
             if (GetTraitor() == null)

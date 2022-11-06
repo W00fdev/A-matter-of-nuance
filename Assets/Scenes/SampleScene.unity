@@ -892,7 +892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 417.67, y: 254.79}
+  m_AnchoredPosition: {x: 417.66998, y: 254.78998}
   m_SizeDelta: {x: -974.66, y: -609.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &421973624
@@ -1223,7 +1223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7618318608825051405, guid: cf1777c552664474baa246f110745b91, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -229.99997
+      value: -229.99994
       objectReference: {fileID: 0}
     - target: {fileID: 7618318608825051405, guid: cf1777c552664474baa246f110745b91, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3001,6 +3001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scrollDrawer: {fileID: 712785270}
   ResourcesManager: {fileID: 1826432377}
+  vassalSpawner: {fileID: 1751849465}
 --- !u!4 &1916878407
 Transform:
   m_ObjectHideFlags: 0
@@ -3266,7 +3267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   periodInSeconds: 2
-  chance: 0
   cooldown: 2
   actorSpotsContainer: {fileID: 489498048}
   cloud: {fileID: 1201527274}
@@ -3286,7 +3286,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isFreezed: 0
 --- !u!4 &2066316662
 Transform:
   m_ObjectHideFlags: 0
