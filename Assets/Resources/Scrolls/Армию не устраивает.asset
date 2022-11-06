@@ -24,15 +24,15 @@ MonoBehaviour:
       text: 
     values:
     - resourceType: 2
-      deltaValue: -8
-    - resourceType: 0
-      deltaValue: 15
+      deltaValue: -6
+    - resourceType: 1
+      deltaValue: 8
   - tooltip: "\u042D\u0442\u043E \u043D\u0435 \u0442\u0430\u043A"
     consequence:
       id: 2
       text: 
     values:
-    - resourceType: 2
-      deltaValue: 8
+    - resourceType: 1
+      deltaValue: -3
     - resourceType: 0
-      deltaValue: -5
+      deltaValue: 3
