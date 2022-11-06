@@ -19,6 +19,8 @@ namespace Logic.Actors
         public Transform cloud;
         public GameManager manager;
 
+        public UnityEvent onKingDied;
+
         private Unit GetKing() => actorSpotsContainer.GetChild(0).GetComponentInChildren<Unit>();
         private Unit GetTraitor() => actorSpotsContainer.GetChild(1).GetComponentInChildren<Unit>();
 
@@ -40,6 +42,17 @@ namespace Logic.Actors
                 manager.OnLose();
             else
                 Destroy(GetTraitor().gameObject);
+
+            foreach (Transform spot in actorSpotsContainer)
+            {
+                if (spot.name == "0")
+                    continue;
+
+                var unit = spot.GetComponentInChildren<Unit>();
+                
+                if (unit != null)
+                    unit.Run();
+            }
         }
 
         private void StartWrapper() => StartCoroutine(WaitAndDo(cooldown, () => StartCoroutine(PeriodicBetrayal())));

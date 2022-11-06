@@ -31,6 +31,11 @@ namespace Logic.Actors
                 Spawn();
         }
 
+        public void Sort()
+        {
+
+        }
+
         public void Spawn()
         {
             Transform nextSpot = null;

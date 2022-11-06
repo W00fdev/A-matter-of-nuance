@@ -54,9 +54,7 @@ namespace Logic.Actors
             _lastCloud.gameObject.SetActive(false);
         }
 
-        private void OnDestroy()
-        {
-            return;
-        }
+        public void Run() => _animator.SetTrigger("run");
+        public void Destroy() => Destroy(gameObject);
     }
 }
