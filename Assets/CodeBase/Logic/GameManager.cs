@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         ResourcesMultiplier += ResourcesMultuplierByVassal;
         
         Constants.SpeedRoom += SpeedByVassal;
-        Constants.TrapChance += 0.07f;
+        Constants.TrapChance -= 0.07f;
     }
 
     private void ClearMultiplier()
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         ResourcesMultiplier = 1.0f;
 
         Constants.SpeedRoom = 3f;
-        Constants.TrapChance = 0f;
+        Constants.TrapChance = 1f;
     }
 
     public void OnLose()
