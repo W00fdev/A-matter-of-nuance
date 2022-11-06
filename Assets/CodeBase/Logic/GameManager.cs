@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         ResourcesManager.LoseEvent += OnLose;
 
         VassalSpawner.VassalSpawnedEvent += RiseMultiplier;
-        //VassalSpawner.VassalDeletedEvent += ClearMultiplier;
+        VassalSpawner.VassalDeletedEvent += DownMultiplier;
 
         KingImmortalUnit.DiedEvent += ClearMultiplier;
         KingImmortalUnit.DiedEvent += ShowTutorialDelayed;
@@ -54,6 +54,15 @@ public class GameManager : MonoBehaviour
         Constants.SpeedRoom = 3f;
         Constants.TrapChance = 1f;
         Constants.BetrayChance = 1f;
+    }
+
+    private void DownMultiplier()
+    {
+        ResourcesMultiplier -= ResourcesMultuplierByVassal;
+
+        Constants.SpeedRoom -= SpeedByVassal;
+        Constants.TrapChance += 0.07f;
+        Constants.BetrayChance += 0.04f;
     }
 
     public void OnLose()
