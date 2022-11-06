@@ -42,6 +42,8 @@ namespace Logic.UI
 
             // Disable player movement
             Constants.AllowedMovement = false;
+
+            AudioManager.Instance.PlayScrollUp();
         }
 
         public void Accept()
@@ -59,6 +61,7 @@ namespace Logic.UI
         public void Close()
         {
             Constants.AllowedMovement = true;
+            AudioManager.Instance.PlayScrollDown();
             gameObject.SetActive(false);
         }
     }

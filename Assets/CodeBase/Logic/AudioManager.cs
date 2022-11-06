@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance = null;
 
-    public List<NamedClips> ClipSamples;
+    public NamedClips[] ClipSamples;
 
     private AudioSource _audioSource;
 
@@ -23,12 +23,7 @@ public class AudioManager : MonoBehaviour
         { 
             Instance = this; 
         }
-        else if (Instance == this)
-        { 
-            Destroy(gameObject);
-        }
 
-        DontDestroyOnLoad(gameObject);
         InitializeManager();
     }
 
@@ -36,9 +31,16 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        //Resources.LoadAll<ScrollData>("Scrolls");
+        ClipSamples = Resources.LoadAll<NamedClips>("Samples");
     }
 
+
+    public void PlayScrollUp()
+        => _audioSource.PlayOneShot(ExtractClipByName(ScrollUp));
+    
+    public void PlayScrollDown()
+        => _audioSource.PlayOneShot(ExtractClipByName(ScrollDown));
+    
     private AudioClip ExtractClipByName(string name)
     {
         foreach (NamedClips namedClip in ClipSamples)
@@ -47,17 +49,4 @@ public class AudioManager : MonoBehaviour
 
         throw new UnityException("No such clip: " + name);
     }
-
-    public void PlayScrollUp()
-        => _audioSource.PlayOneShot(ExtractClipByName(ScrollUp));
-    
-    public void PlayScrollDown()
-        => _audioSource.PlayOneShot(ExtractClipByName(ScrollDown));
-}
-
-[Serializable]
-public class NamedClips
-{
-    public AudioClip Clip;
-    public string Name;
 }

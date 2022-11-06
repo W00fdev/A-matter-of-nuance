@@ -36,13 +36,17 @@ public class GameManager : MonoBehaviour
     private void RiseMultiplier()
     {
         ResourcesMultiplier += ResourcesMultuplierByVassal;
+        
         Constants.SpeedRoom += SpeedByVassal;
+        Constants.TrapChance += 0.07f;
     }
 
     private void ClearMultiplier()
     {
         ResourcesMultiplier = 1.0f;
+
         Constants.SpeedRoom = 3f;
+        Constants.TrapChance = 0f;
     }
 
     private void OnLose()
