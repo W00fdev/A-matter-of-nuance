@@ -18,6 +18,9 @@ public class TimeManager : MonoBehaviour, IManager
     public float winterFirstThreshold;
     public float winterSecondThreshold;
 
+    public float initialSpeed = Constants.SpeedRoom;
+    public float maxSpeed;
+
     public AudioSource firstSource;
     public AudioSource secondSource;
 
@@ -46,6 +49,7 @@ public class TimeManager : MonoBehaviour, IManager
     IEnumerator TickWinter()
     {
         TimeManagerUI.ChangeFrozen(0f);
+        Constants.IsGameStarted = true;
 
         while (_currentTime < WinterTime)
         {
@@ -53,19 +57,21 @@ public class TimeManager : MonoBehaviour, IManager
             _currentTime += WinterTickTime;
             TimeManagerUI.ChangeFrozen(_currentTime / WinterTime);
 
-            if (_currentTime <= winterFirstThreshold)
-            {
-                if (!firstSource.isPlaying)
-                    firstSource.Play();
-            }
-            else
-            if (_currentTime <= winterSecondThreshold)
+            Constants.SpeedRoom = Mathf.Clamp(maxSpeed * (_currentTime / WinterTime), initialSpeed, maxSpeed);
+
+            if (_currentTime >= winterSecondThreshold)
             {
                 if (firstSource.isPlaying)
                     firstSource.Stop();
 
                 if (!secondSource.isPlaying)
                     secondSource.Play();
+            }
+            else
+            if (_currentTime >= winterFirstThreshold)
+            {
+                if (!firstSource.isPlaying)
+                    firstSource.Play();
             }
         }
     }

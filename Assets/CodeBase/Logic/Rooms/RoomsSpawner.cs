@@ -49,7 +49,7 @@ namespace Logic
 
         private void InitializeTraps(RoomRunner scriptRoom)
         {
-            if (Random.value > Constants.TrapChance)
+            if (Random.value <= Constants.TrapChance)
                 BuildRandomTrap(scriptRoom);
         }
 

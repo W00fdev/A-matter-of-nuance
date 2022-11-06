@@ -36,6 +36,9 @@ namespace Logic.Actors
 
         private void Update()
         {
+            if (!Constants.IsGameStarted)
+                return;
+
             if (Input.GetMouseButtonUp(0))
                 walk.Stop();
             else
@@ -48,26 +51,19 @@ namespace Logic.Actors
             if (blockMove)
                 return;
 
-            //if (traitorManager.isFreezed && !Input.GetMouseButton(2))
-            //    traitorManager.isFreezed = false;
-
             TraitorManager.isFreezed = Input.GetMouseButton(1);
 
             if (!noAllowing)
                 Constants.AllowedMovement = !Input.GetMouseButton(1);
             
             renderer.flipX = Input.GetMouseButton(1);
-
-            //transform.localScale = Input.GetMouseButton(1) ? new Vector3(-defaultscale.x, defaultscale.y, defaultscale.z) : defaultscale;
-
-            //Unit traitor = traitorManager.GetTraitor();
-
-            //if (traitor != null && !traitorManager.isFreezed)
-            //    traitor.Scare();
         }
 
         public void NO(bool value)
         {
+            //if (_animator.GetBool("no") && value)
+            //    Run();
+
             _animator.SetBool("no", value);
         }
 
@@ -98,7 +94,10 @@ namespace Logic.Actors
         {
             blockMove = true;
             Constants.AllowedMovement = false;
-            _animator.SetTrigger("fall");
+
+            if (_animator != null)
+                _animator.SetTrigger("fall");
+
             fall.Play();
             DiedEvent?.Invoke();
         }

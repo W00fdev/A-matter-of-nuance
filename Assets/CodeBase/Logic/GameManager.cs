@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource win;
     public AudioSource lose;
+    public AudioSource main;
 
     private void Start()
     {
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         DefeatScreen.SetActive(true);
         lose.Play();
+        main.Stop();
 
         Constants.AllowedMovement = false;
         Constants.BetrayChance = 1f;
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         WinScreen.SetActive(true);
         win.Play();
+        main.Stop();
 
         Constants.AllowedMovement = false;
         Constants.BetrayChance = 1f;

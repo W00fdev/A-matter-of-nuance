@@ -1,5 +1,6 @@
 using UnityEngine;
 using Logic.Actors;
+using System.Collections;
 
 namespace Logic.Interactables
 {
@@ -8,11 +9,12 @@ namespace Logic.Interactables
         [Range(0f, 1f)]
         public float fakeChance;
 
-        private Animator _animator;
+        public Animator _animator;
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            if (_animator == null)
+                _animator = GetComponent<Animator>();
         }
 
         public void Prepare(GameObject unit)
@@ -26,7 +28,18 @@ namespace Logic.Interactables
             if (Random.value >= fakeChance)
                 Debug.Log("fake");
             else
-                unit.GetComponent<Unit>().Die();
+            {
+                StartCoroutine(LateKill(unit.GetComponent<Unit>()));
+                
+                if (_animator != null)
+                    _animator.SetTrigger("Attack");
+            }
+        }
+
+        private IEnumerator LateKill(Unit unit)
+        {
+            yield return new WaitForSeconds(Constants.PingBeforeTrapDie);
+            unit.Die();
         }
     }
 }

@@ -4,10 +4,13 @@
     {
         public static float IntroTime = 3f;
         public static float SpeedRoom = 3f;
-        public static float TrapChance = 1f;
+        public static float TrapChance = 0.4f;
         public static float BetrayChance = 1f;
 
-        public static bool AllowedMovement = true;
+        public static bool AllowedMovement = false;
+        public static bool IsGameStarted = false;
+
+        public static float PingBeforeTrapDie = 2f;
     }
 
 }
