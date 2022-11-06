@@ -14,6 +14,7 @@ namespace Logic.Actors
         public ScrollSpawner scrollSpawner;
 
         public event Action VassalSpawnedEvent;
+        //public event Action VassalDeletedEvent;
 
         private RandomizedCycle<GameObject> _prefabCycle;
 

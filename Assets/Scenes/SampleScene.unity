@@ -185,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126330704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.82, y: 0, z: 0}
+  m_LocalPosition: {x: -7.24, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2313,8 +2313,8 @@ MonoBehaviour:
   VassalSpawner: {fileID: 1751849465}
   DefeatScreen: {fileID: 2101743825}
   WinScreen: {fileID: 136406239}
-  ResourcesMultuplierByVassal: 0.5
-  ResourcesMultiplier: 0
+  ResourcesMultuplierByVassal: 0.25
+  ResourcesMultiplier: 1
 --- !u!1 &1529753769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,6 +3158,7 @@ MonoBehaviour:
   CriticalResource: 20
   WinType: 0
   ResourcesUI: {fileID: 1826432376}
+  GameManager: {fileID: 1453655258}
 --- !u!1 &1916878405
 GameObject:
   m_ObjectHideFlags: 0
