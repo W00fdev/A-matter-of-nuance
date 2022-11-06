@@ -21,6 +21,12 @@ namespace Logic.Actors
 
         private SpriteRenderer renderer;
         private bool blockMove = false;
+
+
+        public AudioSource fall;
+        public AudioSource blood;
+        public AudioSource walk;
+
         private void Awake() => _animator = GetComponent<Animator>();
         private void Start()
         {
@@ -29,6 +35,12 @@ namespace Logic.Actors
 
         private void Update()
         {
+            if (Input.GetMouseButtonDown(0))
+                walk.Play();
+            
+            if (Input.GetMouseButtonUp(0))
+                walk.Stop();
+
             if (!isKing)
                 return;
 
@@ -74,13 +86,18 @@ namespace Logic.Actors
             _lastVictim.Betray();
         }
 
-        public void Betray() => _animator.SetTrigger("blood");
+        public void Betray()
+        {
+            _animator.SetTrigger("blood");
+            blood.Play();
+        }
 
         public void Die()
         {
             blockMove = true;
             Constants.AllowedMovement = false;
             _animator.SetTrigger("fall");
+            fall.Play();
             DiedEvent?.Invoke();
         }
 
