@@ -29,7 +29,7 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeReligion(float changed)
     {
-        Religion = Mathf.Clamp(changed, 0f, MaxResource);
+        Religion = Mathf.Clamp(Religion + changed, 0f, MaxResource);
         ResourcesUI.UpdateReligion(Religion);
 
         if (Religion <= CriticalResource)
@@ -41,7 +41,7 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeArmy(float changed)
     {
-        Army = Mathf.Clamp(changed, 0f, MaxResource);
+        Army = Mathf.Clamp(Army + changed, 0f, MaxResource);
         ResourcesUI.UpdateArmy(Army);
 
         if (Army <= CriticalResource)
@@ -53,7 +53,7 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeFood(float changed)
     {
-        Food = Mathf.Clamp(changed, 0f, MaxResource);
+        Food = Mathf.Clamp(Food + changed, 0f, MaxResource);
         ResourcesUI.UpdateFood(Food);
 
         if (Food <= CriticalResource)

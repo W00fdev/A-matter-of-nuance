@@ -9,11 +9,20 @@ namespace Logic
     public class ScrollSpawner : MonoBehaviour
     {
         public ScrollDrawer _scrollDrawer;
+        public ResourcesManager ResourcesManager;
 
         private ScrollData[] _scrollsData;
         private Queue<ScrollData> _scrollQueue = new();
 
-        private void Start() => _scrollsData = Resources.LoadAll<ScrollData>("Scrolls");
+        private ScrollData _lastData;
+
+        private void Start()
+        {
+            _scrollsData = Resources.LoadAll<ScrollData>("Scrolls");
+
+            _scrollDrawer.AcceptEvent += OnAccept;
+            _scrollDrawer.DeclineEvent += OnDecline;
+        }
 
         // listener for RoomsSpawner.onRoomSpawned
         public void HandleNewRoom(RoomRunner room)
@@ -25,12 +34,8 @@ namespace Logic
         // calls when unit and scroll collides
         private void Spawn(GameObject gameObject)
         {
-            Unit unit = gameObject.GetComponent<Unit>();
-
-            if (unit == null)
-                return;
-
-            RevealNext();
+            if (gameObject.TryGetComponent<Unit>(out _))
+                RevealNext();
         }
 
         private void RevealNext()
@@ -38,10 +43,10 @@ namespace Logic
             if (_scrollQueue.Count == 0)
                 Requeue();
 
-            var scroll = _scrollQueue.Dequeue();
+            _lastData = _scrollQueue.Dequeue();
 
             if (_scrollDrawer != null)
-                _scrollDrawer.Reveal(scroll);
+                _scrollDrawer.Reveal(_lastData);
         }
 
         private void Requeue()
@@ -58,6 +63,34 @@ namespace Logic
 
                 _scrollQueue.Enqueue(_scrollsData[nextId]);
                 used.Add(nextId);
+            }
+        }
+    
+        private void OnAccept()
+        {
+            foreach (var item in _lastData.variants[0].values)
+                ApplyDeltaValues(item);
+        }
+
+        private void OnDecline()
+        {
+            foreach (var item in _lastData.variants[1].values)
+                ApplyDeltaValues(item);
+        }
+
+        private void ApplyDeltaValues(Value value)
+        {
+            switch (value.resourceType)
+            {
+                case ResourceWinType.RELIGION:
+                    ResourcesManager.ChangeReligion(value.deltaValue);
+                        break;
+                case ResourceWinType.FOOD:
+                    ResourcesManager.ChangeFood(value.deltaValue);
+                    break;
+                case ResourceWinType.ARMY:
+                    ResourcesManager.ChangeArmy(value.deltaValue);
+                    break;
             }
         }
     }

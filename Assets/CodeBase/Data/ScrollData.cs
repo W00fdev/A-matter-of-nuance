@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Data
@@ -15,6 +16,14 @@ namespace Data
     {
         public string tooltip;
         public Consequence consequence;
+        public List<Value> values;
+    }
+
+    [Serializable]
+    public struct Value
+    {
+        public ResourceWinType resourceType;
+        public float deltaValue;
     }
 
     [Serializable]

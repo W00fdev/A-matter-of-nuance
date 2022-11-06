@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Data;
+using System;
 
 namespace Logic.UI
 {
@@ -16,6 +17,9 @@ namespace Logic.UI
         public TMP_Text refuseText;
 
         private ScrollData _lastData;
+
+        public event Action AcceptEvent;
+        public event Action DeclineEvent;
 
         public void Reveal(ScrollData data)
         {
@@ -36,9 +40,17 @@ namespace Logic.UI
             _lastData = data;
         }
 
-        public void Accept() => afterSelectText.text = _lastData.variants[0].consequence.text;
+        public void Accept()
+        {
+            afterSelectText.text = _lastData.variants[0].consequence.text;
+            AcceptEvent?.Invoke();
+        }
 
-        public void Decline() => afterSelectText.text = _lastData.variants[1].consequence.text;
+        public void Decline()
+        {
+            afterSelectText.text = _lastData.variants[1].consequence.text;
+            DeclineEvent?.Invoke();
+        }
 
         public void Close() => gameObject.SetActive(false);
     }

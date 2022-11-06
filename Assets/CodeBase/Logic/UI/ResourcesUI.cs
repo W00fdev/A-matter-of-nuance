@@ -15,11 +15,11 @@ public class ResourcesUI : MonoBehaviour
     }
 
     public void UpdateReligion(float newValue)
-        => TextFood.text = newValue.ToString();
+        => TextReligion.text = newValue.ToString();
 
     public void UpdateFood(float newValue) 
         => TextFood.text = newValue.ToString();
 
     public void UpdateArmy(float newValue)
-        => TextFood.text = newValue.ToString();
+        => TextArmy.text = newValue.ToString();
 }
