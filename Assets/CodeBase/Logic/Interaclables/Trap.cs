@@ -17,7 +17,8 @@ namespace Logic.Interactables
 
         public void Prepare(GameObject unit)
         {
-            _animator.SetTrigger("Prepare");
+            if (_animator != null)
+                _animator.SetTrigger("Prepare");
         }
 
         public void Enable(GameObject unit)
