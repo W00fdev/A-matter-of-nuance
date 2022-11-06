@@ -8,9 +8,16 @@ namespace Logic.Interactables
         [Range(0f, 1f)]
         public float fakeChance;
 
+        private Animator _animator;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         public void Prepare(GameObject unit)
         {
-            return;
+            _animator.SetTrigger("Prepare");
         }
 
         public void Enable(GameObject unit)

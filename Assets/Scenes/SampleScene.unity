@@ -1647,18 +1647,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2888049485341148677, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.64999986
-      objectReference: {fileID: 0}
-    - target: {fileID: 2888049485341148677, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.64999986
-      objectReference: {fileID: 0}
-    - target: {fileID: 2888049485341148677, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.64999986
-      objectReference: {fileID: 0}
-    - target: {fileID: 2888049485341148677, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1699,10 +1687,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2888049485341148679, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
-      propertyPath: isKing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2888049485341148679, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
       propertyPath: roomsSpawner
       value: 
       objectReference: {fileID: 854137524}
@@ -1710,10 +1694,6 @@ PrefabInstance:
       propertyPath: traitorManager
       value: 
       objectReference: {fileID: 2066316661}
-    - target: {fileID: 2888049485341148681, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
 --- !u!4 &986338285 stripped

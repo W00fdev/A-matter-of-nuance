@@ -382,8 +382,9 @@ MonoBehaviour:
   - {fileID: 8302409463386347321, guid: 049e9b4b29e34df4c9a55c572a9634e1, type: 3}
   - {fileID: 3899596221445304788, guid: fb0cddecc1fcbd34d81bae2444ef7b81, type: 3}
   - {fileID: 2833323008094264019, guid: 612e6eee393305847b6b61b309d1aa0a, type: 3}
+  - {fileID: 2301788864974193513, guid: 8348bd598a4a2194798f2d3985fbe419, type: 3}
   TrapPrefabsContainer:
-  - {fileID: 3377663958652592246, guid: be4027d20a97b634cac88b8e7d6c639b, type: 3}
+  - {fileID: 3448203912921463302, guid: 7f049658270218c40bfb72e1c2f771c0, type: 3}
   trapSpotsContainer: {fileID: 1510984675745463704}
   decorSpotsContainer: {fileID: 7155036177603154181}
   scrollContainer: {fileID: 7155036179146448022}
