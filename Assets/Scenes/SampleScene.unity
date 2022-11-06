@@ -2313,6 +2313,7 @@ MonoBehaviour:
   VassalSpawner: {fileID: 1751849465}
   DefeatScreen: {fileID: 2101743825}
   WinScreen: {fileID: 136406239}
+  SpeedByVassal: 0.4
   ResourcesMultuplierByVassal: 0.25
   ResourcesMultiplier: 1
 --- !u!1 &1529753769

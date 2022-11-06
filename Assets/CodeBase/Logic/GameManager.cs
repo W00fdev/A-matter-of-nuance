@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Logic.Actors;
+using Logic;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject DefeatScreen;
     public GameObject WinScreen;
 
+    public float SpeedByVassal = 0.5f;
     public float ResourcesMultuplierByVassal = 0.5f;
     public float ResourcesMultiplier = 1f;
 
@@ -22,11 +24,17 @@ public class GameManager : MonoBehaviour
         //VassalSpawner.VassalDeletedEvent += ClearMultiplier;
     }
 
-    private void RiseMultiplier() 
-        => ResourcesMultiplier += ResourcesMultuplierByVassal;
+    private void RiseMultiplier()
+    {
+        ResourcesMultiplier += ResourcesMultuplierByVassal;
+        Constants.SpeedRoom += SpeedByVassal;
+    }
 
-    private void ClearMultiplier() 
-        => ResourcesMultiplier = 1.0f;
+    private void ClearMultiplier()
+    {
+        ResourcesMultiplier = 1.0f;
+        Constants.SpeedRoom = 3f;
+    }
 
     private void OnLose()
     {
