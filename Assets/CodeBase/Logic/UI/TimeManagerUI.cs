@@ -12,14 +12,10 @@ public class TimeManagerUI : MonoBehaviour
         ProgressImage.fillAmount = 0f;
     }
 
-    public void ChangeFrozen(float coeff)
-    {
-        FrozenImage.fillAmount = coeff;
-    }
+    public void ChangeFrozen(float coeff) 
+        => FrozenImage.fillAmount = coeff;
 
-    public void ChangeProgress(float coeff)
-    {
-        ProgressImage.fillAmount = coeff;
-    }
+    public void ChangeProgress(float coeff) 
+        => ProgressImage.fillAmount = coeff;
 
 }

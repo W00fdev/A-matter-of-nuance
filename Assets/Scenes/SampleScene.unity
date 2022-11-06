@@ -151,9 +151,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1317407945}
   - {fileID: 1916878407}
   - {fileID: 854137523}
-  - {fileID: 1317407945}
   - {fileID: 1826432375}
   - {fileID: 1453655257}
   - {fileID: 1751849464}
@@ -1152,7 +1152,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 70552616}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &854137524
 MonoBehaviour:
@@ -1433,7 +1433,7 @@ RectTransform:
   m_Children:
   - {fileID: 2117340459}
   m_Father: {fileID: 418270754}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1510,7 +1510,7 @@ RectTransform:
   m_Children:
   - {fileID: 1455226958}
   m_Father: {fileID: 418270754}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1868,7 +1868,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 70552616}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1317407946
 MonoBehaviour:
@@ -1884,6 +1884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllManagers:
   - {fileID: 854137524}
+  - {fileID: 1281781689}
   InstantStart: 1
 --- !u!1 &1327525732
 GameObject:
@@ -2133,8 +2134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourcesManager: {fileID: 1826432377}
+  VassalSpawner: {fileID: 0}
   DefeatScreen: {fileID: 2101743825}
   WinScreen: {fileID: 136406239}
+  ResourcesMultuplierByVassal: 0.5
   ResourcesMultiplier: 0
 --- !u!1 &1455226957
 GameObject:
@@ -3099,7 +3102,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 70552616}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084559271
 GameObject:

@@ -1,4 +1,5 @@
 using Infrastructure;
+using Logic;
 using System.Collections;
 using UnityEngine;
 
@@ -16,11 +17,21 @@ public class TimeManager : MonoBehaviour, IManager
 
     public void EnableManager(bool instant)
     {
-        StartCoroutine(TickWinter());
+        StartCoroutine(FaderBeforeManager());
     }
 
     public void DisableManager()
     {
+    }
+
+    private void StartWrapper()
+        => StartCoroutine(TickWinter());
+
+    IEnumerator FaderBeforeManager()
+    {
+        yield return new WaitForSeconds(Constants.IntroTime);
+     
+        StartWrapper();
     }
 
     IEnumerator TickWinter()
