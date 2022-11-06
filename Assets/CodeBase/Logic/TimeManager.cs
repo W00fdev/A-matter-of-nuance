@@ -46,9 +46,6 @@ public class TimeManager : MonoBehaviour, IManager
             yield return new WaitForSeconds(WinterTickTime);
             _currentTime += WinterTickTime;
             TimeManagerUI.ChangeFrozen(_currentTime / WinterTime);
-
-            Debug.Log("SUIKA WINTER");
-
         }
     }
 }
