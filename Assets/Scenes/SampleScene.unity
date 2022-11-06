@@ -1687,9 +1687,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2888049485341148679, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
+      propertyPath: isKing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888049485341148679, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
       propertyPath: roomsSpawner
       value: 
       objectReference: {fileID: 854137524}
+    - target: {fileID: 2888049485341148679, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
+      propertyPath: traitorManager
+      value: 
+      objectReference: {fileID: 2066316661}
     - target: {fileID: 2888049485341148681, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3278,6 +3286,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isFreezed: 0
 --- !u!4 &2066316662
 Transform:
   m_ObjectHideFlags: 0

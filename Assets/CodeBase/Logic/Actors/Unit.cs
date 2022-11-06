@@ -39,10 +39,10 @@ namespace Logic.Actors
 
             transform.localScale = Input.GetMouseButton(2) ? new Vector3(-defaultscale.x, defaultscale.y, defaultscale.z) : defaultscale;
 
-            Unit traitor = traitorManager.GetTraitor();
+            //Unit traitor = traitorManager.GetTraitor();
 
-            if (traitor != null && !traitorManager.isFreezed)
-                traitor.Scare();
+            //if (traitor != null && !traitorManager.isFreezed)
+            //    traitor.Scare();
         }
 
         public void Scare()
