@@ -9,7 +9,7 @@ AnimatorOverrideController:
   m_Name: vassal 3
   m_Controller: {fileID: 9100000, guid: 8001607ecd81f1c45a12488b84d58716, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: c2e8959514ccee4428ce2d5b4877b5a2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3d68a8ef48476bb4a80d77213ab19fd1, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: f364ae075a0906b4d86c84ed81f4bba5, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 07186a1d24155d54db2e597b066d5816, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0cc33ba8c15930946aaafb1aa766c350, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: d456b0108e4863749bb2e336465f5c21, type: 2}
