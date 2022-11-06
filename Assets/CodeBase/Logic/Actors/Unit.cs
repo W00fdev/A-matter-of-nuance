@@ -26,6 +26,7 @@ namespace Logic.Actors
         public AudioSource fall;
         public AudioSource blood;
         public AudioSource walk;
+        public AudioSource died;
 
         private void Awake() => _animator = GetComponent<Animator>();
         private void Start()
@@ -84,6 +85,7 @@ namespace Logic.Actors
 
             _lastCloud.gameObject.SetActive(true);
             _lastVictim.Betray();
+            died.Play();
         }
 
         public void Betray()
