@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using Utilities.Physics;
 using UnityEngine;
 using Logic.UI;
+using Logic.Actors;
 using Data;
 
-namespace Logic
+namespace Logic.Interactables
 {
     public class ScrollSpawner : MonoBehaviour
     {

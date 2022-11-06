@@ -1,6 +1,7 @@
 using UnityEngine;
+using Logic.Actors;
 
-namespace Logic
+namespace Logic.Interactables
 {
     public class Trap : MonoBehaviour
     {

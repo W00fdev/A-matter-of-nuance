@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Logic
+namespace Logic.Actors
 {
     public class Unit : MonoBehaviour
     {
