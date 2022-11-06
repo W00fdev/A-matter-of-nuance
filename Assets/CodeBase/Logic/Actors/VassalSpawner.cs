@@ -1,6 +1,7 @@
-using Data;
 using Logic.Interactables;
 using UnityEngine;
+using System;
+using Data;
 
 namespace Logic.Actors
 {
@@ -10,8 +11,9 @@ namespace Logic.Actors
         private GameObject[] _prefabs;
 
         public Transform actorSpotsContainer;
-
         public ScrollSpawner scrollSpawner;
+
+        public event Action VassalSpawnedEvent;
 
         private void Start()
         {
@@ -39,7 +41,8 @@ namespace Logic.Actors
             if (nextSpot == null)
                 return;
 
-            Instantiate(_prefabs[Random.Range(0, _prefabs.Length)], nextSpot);
+            Instantiate(_prefabs[UnityEngine.Random.Range(0, _prefabs.Length)], nextSpot);
+            VassalSpawnedEvent?.Invoke();
         }
     }
 }
