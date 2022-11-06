@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void OnLose()
     {
+        Constants.AllowedMovement = false;
         DefeatScreen.SetActive(true);
     }
 
