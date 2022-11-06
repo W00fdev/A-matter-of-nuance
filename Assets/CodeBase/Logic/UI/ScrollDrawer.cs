@@ -18,8 +18,8 @@ namespace Logic.UI
 
         private ScrollData _lastData;
 
-        public event Action AcceptEvent;
-        public event Action DeclineEvent;
+        public event Action<Variant> AcceptEvent;
+        public event Action<Variant> DeclineEvent;
 
         public void Reveal(ScrollData data)
         {
@@ -43,13 +43,13 @@ namespace Logic.UI
         public void Accept()
         {
             afterSelectText.text = _lastData.variants[0].consequence.text;
-            AcceptEvent?.Invoke();
+            AcceptEvent?.Invoke(_lastData.variants[0]);
         }
 
         public void Decline()
         {
             afterSelectText.text = _lastData.variants[1].consequence.text;
-            DeclineEvent?.Invoke();
+            DeclineEvent?.Invoke(_lastData.variants[1]);
         }
 
         public void Close() => gameObject.SetActive(false);

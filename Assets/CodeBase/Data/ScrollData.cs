@@ -31,5 +31,6 @@ namespace Data
     {
         public int id;
         public string text;
+        public bool hasToCreateVassal;
     }
 }

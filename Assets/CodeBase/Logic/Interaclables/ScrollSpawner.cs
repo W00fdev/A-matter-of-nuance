@@ -15,14 +15,11 @@ namespace Logic.Interactables
         private ScrollData[] _scrollsData;
         private Queue<ScrollData> _scrollQueue = new();
 
-        private ScrollData _lastData;
-
         private void Start()
         {
             _scrollsData = Resources.LoadAll<ScrollData>("Scrolls");
-
-            _scrollDrawer.AcceptEvent += OnAccept;
-            _scrollDrawer.DeclineEvent += OnDecline;
+            _scrollDrawer.AcceptEvent += OnMakeDecision;
+            _scrollDrawer.DeclineEvent += OnMakeDecision;
         }
 
         // listener for RoomsSpawner.onRoomSpawned
@@ -44,10 +41,10 @@ namespace Logic.Interactables
             if (_scrollQueue.Count == 0)
                 Requeue();
 
-            _lastData = _scrollQueue.Dequeue();
+            var data = _scrollQueue.Dequeue();
 
             if (_scrollDrawer != null)
-                _scrollDrawer.Reveal(_lastData);
+                _scrollDrawer.Reveal(data);
         }
 
         private void Requeue()
@@ -67,15 +64,9 @@ namespace Logic.Interactables
             }
         }
     
-        private void OnAccept()
+        private void OnMakeDecision(Variant variant)
         {
-            foreach (var item in _lastData.variants[0].values)
-                ApplyDeltaValues(item);
-        }
-
-        private void OnDecline()
-        {
-            foreach (var item in _lastData.variants[1].values)
+            foreach (var item in variant.values)
                 ApplyDeltaValues(item);
         }
 
