@@ -89,7 +89,9 @@ namespace Logic.Actors
             clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clone.GetComponent<SpriteRenderer>().sortingOrder = 4;
             Constants.AllowedMovement = true;
-            _lastCloud.gameObject.SetActive(false);
+
+            if (_lastCloud != null)
+                _lastCloud.gameObject.SetActive(false);
             blockMove = false;
         }
 

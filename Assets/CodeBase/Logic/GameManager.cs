@@ -56,15 +56,15 @@ public class GameManager : MonoBehaviour
 
     public void OnLose()
     {
+        DefeatScreen.SetActive(true);
         lose.Play();
         Constants.AllowedMovement = false;
-        DefeatScreen.SetActive(true);
     }
 
     public void OnWin()
     {
-        win.Play();
         WinScreen.SetActive(true);
+        win.Play();
     }
 
     private void ShowTutorialDelayed()
