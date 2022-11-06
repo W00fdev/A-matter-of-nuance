@@ -30,7 +30,7 @@ namespace Logic.Actors
             if (variant.consequence.hasToCreateVassal)
                 Spawn();
 
-            //if (variant.consequence.hasToLoseVassal)
+            if (variant.consequence.hasToLoseVassal)
                 Kick();
         }
 
