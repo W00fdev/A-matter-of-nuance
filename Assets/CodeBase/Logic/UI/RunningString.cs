@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 namespace Logic.UI
 {
@@ -12,6 +13,8 @@ namespace Logic.UI
 
         [SerializeField]
         private float _speed = 2f;
+
+        public UnityEvent onEnd;
 
         private void Start()
         {
@@ -26,7 +29,11 @@ namespace Logic.UI
                 text.text += _introStory[i];
                 yield return new WaitForSeconds(1f / _speed);
             }
+
+            onEnd.Invoke();
         }
+
+
     }
 
 }
