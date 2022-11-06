@@ -29,11 +29,31 @@ namespace Logic.Actors
         {
             if (variant.consequence.hasToCreateVassal)
                 Spawn();
+
+            //if (variant.consequence.hasToLoseVassal)
+                Kick();
         }
 
-        public void Sort()
-        {
+        public void Sort() { }
 
+        public void Kick()
+        {
+            Transform last = null;
+
+            foreach (Transform spot in actorSpotsContainer)
+            {
+                if (spot.childCount == 0)
+                {
+                    if (last != null)
+                    {
+                        Unit unit = last.GetChild(0).GetComponent<Unit>();
+                        unit.Run();
+                        break;
+                    }
+                }
+
+                last = spot;
+            }
         }
 
         public void Spawn()
