@@ -21,8 +21,10 @@ namespace Logic.Actors
 
         public UnityEvent onKingDied;
 
-        private Unit GetKing() => actorSpotsContainer.GetChild(0).GetComponentInChildren<Unit>();
-        private Unit GetTraitor() => actorSpotsContainer.GetChild(1).GetComponentInChildren<Unit>();
+        public bool isFreezed;
+
+        public Unit GetKing() => actorSpotsContainer.GetChild(0).GetComponentInChildren<Unit>();
+        public Unit GetTraitor() => actorSpotsContainer.GetChild(1).GetComponentInChildren<Unit>();
 
         public void EnableManager(bool instant)
         {
@@ -68,6 +70,9 @@ namespace Logic.Actors
             while (true)
             {
                 yield return new WaitForSeconds(periodInSeconds);
+
+                if (isFreezed)
+                    continue;
 
                 if (UnityEngine.Random.value > chance)
                     continue;
