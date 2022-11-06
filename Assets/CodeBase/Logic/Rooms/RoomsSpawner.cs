@@ -19,6 +19,8 @@ namespace Logic
 
         public float DecorBuildChance = 0.43f;
 
+        public RoomRunner LastRoom { get; private set; }
+
         public void EnableManager(bool instant)
         {
             if (instant == false)
@@ -64,6 +66,7 @@ namespace Logic
             scriptRoom.FirstOffset = (firstRoom == false) ? offsetJoint2D : Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.CameraBoundsX = Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.Enable();
+            LastRoom = scriptRoom;
             onRoomSpawned.Invoke(scriptRoom);
         }
 

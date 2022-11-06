@@ -49,12 +49,12 @@ public class GameManager : MonoBehaviour
         Constants.TrapChance = 0f;
     }
 
-    private void OnLose()
+    public void OnLose()
     {
         DefeatScreen.SetActive(true);
     }
 
-    private void OnWin()
+    public void OnWin()
     {
         WinScreen.SetActive(true);
     }

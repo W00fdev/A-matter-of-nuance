@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1912243973778873578, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
+      propertyPath: m_Size.x
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912243973778873578, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
+      propertyPath: m_Size.y
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912243973778873578, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d61ee6fa7c130fd42bc28e5af8aeacf4, type: 3}
+    - target: {fileID: 1912243973778873578, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7183801949263858965, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -62,6 +78,10 @@ PrefabInstance:
     - target: {fileID: 7183801949263858967, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
       propertyPath: m_Name
       value: Vassal 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183801949263858967, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7183801949263858969, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
       propertyPath: m_Controller
