@@ -4,6 +4,8 @@
     {
         public static float IntroTime = 3f;
         public static float SpeedRoom = 3f;
+
+        public static bool AllowedMovement = true;
     }
 
 }

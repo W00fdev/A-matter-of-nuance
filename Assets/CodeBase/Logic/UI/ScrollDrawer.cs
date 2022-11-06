@@ -38,6 +38,10 @@ namespace Logic.UI
                 refuseText.text = data.variants[1].tooltip;
 
             _lastData = data;
+
+
+            // Disable player movement
+            Constants.AllowedMovement = false;
         }
 
         public void Accept()
@@ -52,6 +56,10 @@ namespace Logic.UI
             DeclineEvent?.Invoke(_lastData.variants[1]);
         }
 
-        public void Close() => gameObject.SetActive(false);
+        public void Close()
+        {
+            Constants.AllowedMovement = true;
+            gameObject.SetActive(false);
+        }
     }
 }

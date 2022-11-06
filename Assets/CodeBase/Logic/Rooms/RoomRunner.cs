@@ -44,7 +44,7 @@ namespace Logic
             if (_enabled == false)
                 return;
 
-            if (_input.IsRunButton())
+            if (_input.IsRunButton() && Constants.AllowedMovement == true)
             {
                 _horizontalVelocity.x = -Constants.SpeedRoom;
 
