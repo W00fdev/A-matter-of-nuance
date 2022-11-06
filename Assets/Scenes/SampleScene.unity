@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourcesManager: {fileID: 1826432377}
-  VassalSpawner: {fileID: 0}
+  VassalSpawner: {fileID: 1751849465}
   DefeatScreen: {fileID: 2101743825}
   WinScreen: {fileID: 136406239}
   ResourcesMultuplierByVassal: 0.5

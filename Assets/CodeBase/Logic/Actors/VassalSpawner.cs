@@ -15,8 +15,11 @@ namespace Logic.Actors
 
         public event Action VassalSpawnedEvent;
 
+        private RandomizedCycle<GameObject> _prefabCycle;
+
         private void Start()
         {
+            _prefabCycle = new(_prefabs);
             scrollSpawner._scrollDrawer.AcceptEvent += OnMakeDecision;
             scrollSpawner._scrollDrawer.DeclineEvent += OnMakeDecision;
         }
@@ -41,7 +44,7 @@ namespace Logic.Actors
             if (nextSpot == null)
                 return;
 
-            Instantiate(_prefabs[UnityEngine.Random.Range(0, _prefabs.Length)], nextSpot);
+            Instantiate(_prefabCycle.GetNext(), nextSpot);
             VassalSpawnedEvent?.Invoke();
         }
     }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Utilities.Physics;
 using UnityEngine;
 using Logic.UI;
@@ -12,12 +11,11 @@ namespace Logic.Interactables
         public ScrollDrawer _scrollDrawer;
         public ResourcesManager ResourcesManager;
 
-        private ScrollData[] _scrollsData;
-        private Queue<ScrollData> _scrollQueue = new();
+        private RandomizedCycle<ScrollData> _dataCycle;
 
         private void Start()
         {
-            _scrollsData = Resources.LoadAll<ScrollData>("Scrolls");
+            _dataCycle = new(Resources.LoadAll<ScrollData>("Scrolls"));
             _scrollDrawer.AcceptEvent += OnMakeDecision;
             _scrollDrawer.DeclineEvent += OnMakeDecision;
         }
@@ -33,37 +31,10 @@ namespace Logic.Interactables
         private void Spawn(GameObject gameObject)
         {
             if (gameObject.TryGetComponent<Unit>(out _))
-                RevealNext();
+                if (_scrollDrawer != null)
+                    _scrollDrawer.Reveal(_dataCycle.GetNext());
         }
 
-        private void RevealNext()
-        {
-            if (_scrollQueue.Count == 0)
-                Requeue();
-
-            var data = _scrollQueue.Dequeue();
-
-            if (_scrollDrawer != null)
-                _scrollDrawer.Reveal(data);
-        }
-
-        private void Requeue()
-        {
-            List<int> used = new();
-            _scrollQueue = new Queue<ScrollData>(_scrollsData.Length);
-
-            while (_scrollQueue.Count != _scrollsData.Length)
-            {
-                int nextId = Random.Range(0, _scrollsData.Length);
-
-                if (used.Contains(nextId))
-                    continue;
-
-                _scrollQueue.Enqueue(_scrollsData[nextId]);
-                used.Add(nextId);
-            }
-        }
-    
         private void OnMakeDecision(Variant variant)
         {
             foreach (var item in variant.values)
