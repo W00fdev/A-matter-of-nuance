@@ -16,10 +16,14 @@ namespace Logic.UI
         public Transform refuse;
         public TMP_Text refuseText;
 
+        public static int ScrollsCount = 0;
+
         private ScrollData _lastData;
 
         public event Action<Variant> AcceptEvent;
         public event Action<Variant> DeclineEvent;
+
+        public event Action TimeToSpawnVassalEvent;
 
         public void Reveal(ScrollData data)
         {
@@ -42,8 +46,12 @@ namespace Logic.UI
 
             // Disable player movement
             Constants.AllowedMovement = false;
-
             AudioManager.Instance.PlayScrollUp();
+
+            ScrollsCount++;
+
+            if (ScrollsCount == 4)
+                TimeToSpawnVassalEvent?.Invoke();
         }
 
         public void Accept()

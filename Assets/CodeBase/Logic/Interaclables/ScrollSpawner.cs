@@ -11,6 +11,8 @@ namespace Logic.Interactables
         public ScrollDrawer _scrollDrawer;
         public ResourcesManager ResourcesManager;
 
+        public VassalSpawner vassalSpawner;
+
         private RandomizedCycle<ScrollData> _dataCycle;
 
         private void Start()
@@ -18,6 +20,7 @@ namespace Logic.Interactables
             _dataCycle = new(Resources.LoadAll<ScrollData>("Scrolls"));
             _scrollDrawer.AcceptEvent += OnMakeDecision;
             _scrollDrawer.DeclineEvent += OnMakeDecision;
+            _scrollDrawer.TimeToSpawnVassalEvent += vassalSpawner.Spawn;
         }
 
         // listener for RoomsSpawner.onRoomSpawned

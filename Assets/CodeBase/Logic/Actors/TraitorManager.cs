@@ -10,8 +10,6 @@ namespace Logic.Actors
     {
         [Header("Settings")]
         public float periodInSeconds;
-        [Range(0f, 1f)]
-        public float chance;
         public float cooldown;
 
         [Header("References")]
@@ -74,7 +72,7 @@ namespace Logic.Actors
                 if (isFreezed)
                     continue;
 
-                if (UnityEngine.Random.value > chance)
+                if (UnityEngine.Random.value > Constants.BetrayChance)
                     continue;
 
                 var traitor = GetTraitor();
