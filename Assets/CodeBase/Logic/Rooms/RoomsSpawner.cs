@@ -17,9 +17,9 @@ namespace Logic
 
         public UnityEvent<RoomRunner> onRoomSpawned;
 
-        // 0..1f, next it'll be changed by progressManager
-        public float TrapBuildChance = 0.3f;
         public float DecorBuildChance = 0.43f;
+
+        public RoomRunner LastRoom { get; private set; }
 
         public void EnableManager(bool instant)
         {
@@ -49,7 +49,7 @@ namespace Logic
 
         private void InitializeTraps(RoomRunner scriptRoom)
         {
-            if (Random.value >= TrapBuildChance)
+            if (Random.value > Constants.TrapChance)
                 BuildRandomTrap(scriptRoom);
         }
 
@@ -66,6 +66,7 @@ namespace Logic
             scriptRoom.FirstOffset = (firstRoom == false) ? offsetJoint2D : Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.CameraBoundsX = Mathf.Abs(CameraBoundsX.x) + Mathf.Abs(CameraBoundsX.y);
             scriptRoom.Enable();
+            LastRoom = scriptRoom;
             onRoomSpawned.Invoke(scriptRoom);
         }
 

@@ -1,25 +1,23 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ResourcesUI : MonoBehaviour
 {
-    public TextMeshProUGUI TextReligion;
-    public TextMeshProUGUI TextArmy;
-    public TextMeshProUGUI TextFood;
+    public Image Religion;
+    public Image Army;
+    public Image Food;
 
     private void Awake()
     {
-        TextReligion.text = "";
-        TextArmy.text = "";
-        TextFood.text = "";
     }
 
     public void UpdateReligion(float newValue)
-        => TextReligion.text = newValue.ToString();
+        => Religion.fillAmount = newValue;
 
     public void UpdateFood(float newValue) 
-        => TextFood.text = newValue.ToString();
+        => Food.fillAmount = newValue;
 
     public void UpdateArmy(float newValue)
-        => TextArmy.text = newValue.ToString();
+        => Army.fillAmount = newValue;
 }

@@ -24,16 +24,6 @@ namespace Logic
         public Transform decorSpotsContainer;
         public Transform scrollContainer;
 
-        public float Speed
-        {
-            get => _speed;
-            set 
-            {
-                _speed = value;
-                _horizontalVelocity.x = -(value);
-            }
-        }
-
         private Vector3 _horizontalVelocity;
         private float _distance = 0f;
         private bool _enabled = false;
@@ -46,7 +36,7 @@ namespace Logic
 
         private void Awake()
         {
-            _horizontalVelocity = new Vector3(-Speed, 0f, 0f);
+            _horizontalVelocity = new Vector3(-Constants.SpeedRoom, 0f, 0f);
         }
 
         private void Update()
@@ -54,26 +44,14 @@ namespace Logic
             if (_enabled == false)
                 return;
 
-            if (_input.IsRunButton())
+            if (_input.IsRunButton() && Constants.AllowedMovement == true)
             {
+                _horizontalVelocity.x = -Constants.SpeedRoom;
+
                 RunRoom();
                 CheckBounds();
             }
         }
-
-        /*private void OnValidate()
-        {
-            //if (DecorAndTrapConflicted == false)
-            return;
-
-            if (TrapBuildChance + DecorBuildChance > 100)
-            {
-                if (TrapBuildChance > DecorBuildChance)
-                    DecorBuildChance = 100f - TrapBuildChance;
-                else
-                    TrapBuildChance = 100f - DecorBuildChance;
-            }
-        }*/
 
         public void Enable() => _enabled = true;
         public void Disable() => _enabled = false;

@@ -17,20 +17,22 @@ public class ResourcesManager : MonoBehaviour
     public ResourceWinType WinType;
     public ResourcesUI ResourcesUI;
 
+    public GameManager GameManager;
+
     public event Action LoseEvent; 
     public event Action WinEvent; 
 
     void Start()
     {
-        ResourcesUI.UpdateReligion(Religion);
-        ResourcesUI.UpdateArmy(Army);
-        ResourcesUI.UpdateFood(Food);
+        ResourcesUI.UpdateReligion(Religion / MaxResource);
+        ResourcesUI.UpdateArmy(Army / MaxResource);
+        ResourcesUI.UpdateFood(Food / MaxResource);
     }
 
     public void ChangeReligion(float changed)
     {
-        Religion = Mathf.Clamp(Religion + changed, 0f, MaxResource);
-        ResourcesUI.UpdateReligion(Religion);
+        Religion = Mathf.Clamp(Religion + GameManager.ResourcesMultiplier * changed, 0f, MaxResource);
+        ResourcesUI.UpdateReligion(Religion / MaxResource);
 
         if (Religion <= CriticalResource)
             LoseEvent?.Invoke();
@@ -41,8 +43,8 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeArmy(float changed)
     {
-        Army = Mathf.Clamp(Army + changed, 0f, MaxResource);
-        ResourcesUI.UpdateArmy(Army);
+        Army = Mathf.Clamp(Army + GameManager.ResourcesMultiplier * changed, 0f, MaxResource);
+        ResourcesUI.UpdateArmy(Army / MaxResource);
 
         if (Army <= CriticalResource)
             LoseEvent?.Invoke();
@@ -53,8 +55,9 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeFood(float changed)
     {
-        Food = Mathf.Clamp(Food + changed, 0f, MaxResource);
-        ResourcesUI.UpdateFood(Food);
+        Food = Mathf.Clamp(Food + GameManager.ResourcesMultiplier * changed, 0f, MaxResource);
+        ResourcesUI.UpdateFood(Food / MaxResource);
+
 
         if (Food <= CriticalResource)
             LoseEvent?.Invoke();

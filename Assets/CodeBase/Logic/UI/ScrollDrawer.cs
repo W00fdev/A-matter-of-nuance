@@ -16,10 +16,14 @@ namespace Logic.UI
         public Transform refuse;
         public TMP_Text refuseText;
 
+        public static int ScrollsCount = 0;
+
         private ScrollData _lastData;
 
-        public event Action AcceptEvent;
-        public event Action DeclineEvent;
+        public event Action<Variant> AcceptEvent;
+        public event Action<Variant> DeclineEvent;
+
+        public event Action TimeToSpawnVassalEvent;
 
         public void Reveal(ScrollData data)
         {
@@ -38,20 +42,35 @@ namespace Logic.UI
                 refuseText.text = data.variants[1].tooltip;
 
             _lastData = data;
+
+
+            // Disable player movement
+            Constants.AllowedMovement = false;
+            AudioManager.Instance.PlayScrollUp();
+
+            ScrollsCount++;
+
+            if (ScrollsCount == 4)
+                TimeToSpawnVassalEvent?.Invoke();
         }
 
         public void Accept()
         {
             afterSelectText.text = _lastData.variants[0].consequence.text;
-            AcceptEvent?.Invoke();
+            AcceptEvent?.Invoke(_lastData.variants[0]);
         }
 
         public void Decline()
         {
             afterSelectText.text = _lastData.variants[1].consequence.text;
-            DeclineEvent?.Invoke();
+            DeclineEvent?.Invoke(_lastData.variants[1]);
         }
 
-        public void Close() => gameObject.SetActive(false);
+        public void Close()
+        {
+            Constants.AllowedMovement = true;
+            AudioManager.Instance.PlayScrollDown();
+            gameObject.SetActive(false);
+        }
     }
 }
