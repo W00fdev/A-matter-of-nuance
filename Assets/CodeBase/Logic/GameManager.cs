@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public float ResourcesMultuplierByVassal = 0.5f;
     public float ResourcesMultiplier = 1f;
 
+    public AudioSource win;
+    public AudioSource lose;
+
     private void Start()
     {
         ResourcesManager.WinEvent += OnWin;
@@ -53,12 +56,14 @@ public class GameManager : MonoBehaviour
 
     public void OnLose()
     {
+        lose.Play();
         Constants.AllowedMovement = false;
         DefeatScreen.SetActive(true);
     }
 
     public void OnWin()
     {
+        win.Play();
         WinScreen.SetActive(true);
     }
 
