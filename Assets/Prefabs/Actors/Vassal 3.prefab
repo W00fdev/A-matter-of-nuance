@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vassal 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7183801949263858969, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4cda8e02592517d45bdf5b6151ec16b4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50d07beca1a837c46ba8ea7dd6622503, type: 3}
