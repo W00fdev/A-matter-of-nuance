@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject DefeatScreen;
     public GameObject WinScreen;
 
+    public float ResourcesMultiplier;
+
     private void Start()
     {
         ResourcesManager.WinEvent += OnWin;
