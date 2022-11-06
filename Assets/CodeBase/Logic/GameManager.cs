@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public float ResourcesMultuplierByVassal = 0.5f;
     public float ResourcesMultiplier = 1f;
 
+    private float _prevBetrayChance = 1f;
+
     public AudioSource win;
     public AudioSource lose;
 
@@ -51,20 +53,25 @@ public class GameManager : MonoBehaviour
 
         Constants.SpeedRoom = 3f;
         Constants.TrapChance = 1f;
-        Constants.BetrayChance = 0f;
+        Constants.BetrayChance = 1f;
     }
 
     public void OnLose()
     {
         DefeatScreen.SetActive(true);
         lose.Play();
+
         Constants.AllowedMovement = false;
+        Constants.BetrayChance = 1f;
     }
 
     public void OnWin()
     {
         WinScreen.SetActive(true);
         win.Play();
+
+        Constants.AllowedMovement = false;
+        Constants.BetrayChance = 1f;
     }
 
     private void ShowTutorialDelayed()
@@ -78,6 +85,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(TutorialShowDelay);
 
+        Constants.AllowedMovement = false;
+        _prevBetrayChance = Constants.BetrayChance;
+        Constants.BetrayChance = 1f;
+
         TutorialScreen.SetActive(true);
         StartCoroutine(TutorialScreenShowOff());
     }
@@ -86,6 +97,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(TutorialHideDelay);
         TutorialScreen.SetActive(false);
+
+        Constants.BetrayChance = _prevBetrayChance;
     }
 
 }
