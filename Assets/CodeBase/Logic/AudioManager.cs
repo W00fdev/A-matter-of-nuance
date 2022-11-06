@@ -34,7 +34,6 @@ public class AudioManager : MonoBehaviour
         ClipSamples = Resources.LoadAll<NamedClips>("Samples");
     }
 
-
     public void PlayScrollUp()
         => _audioSource.PlayOneShot(ExtractClipByName(ScrollUp));
     
@@ -45,7 +44,10 @@ public class AudioManager : MonoBehaviour
     {
         foreach (NamedClips namedClip in ClipSamples)
             if (namedClip.Name == name)
+            {
+                _audioSource.volume = namedClip.volume;
                 return namedClip.Clip;
+            }
 
         throw new UnityException("No such clip: " + name);
     }

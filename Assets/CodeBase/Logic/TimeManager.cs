@@ -15,6 +15,12 @@ public class TimeManager : MonoBehaviour, IManager
 
     private float _currentTime = 0f;
 
+    public float winterFirstThreshold;
+    public float winterSecondThreshold;
+
+    public AudioSource firstSource;
+    public AudioSource secondSource;
+
     public void EnableManager(bool instant)
     {
         if (instant == false)
@@ -46,6 +52,21 @@ public class TimeManager : MonoBehaviour, IManager
             yield return new WaitForSeconds(WinterTickTime);
             _currentTime += WinterTickTime;
             TimeManagerUI.ChangeFrozen(_currentTime / WinterTime);
+
+            if (_currentTime <= winterFirstThreshold)
+            {
+                if (!firstSource.isPlaying)
+                    firstSource.Play();
+            }
+            else
+            if (_currentTime <= winterSecondThreshold)
+            {
+                if (firstSource.isPlaying)
+                    firstSource.Stop();
+
+                if (!secondSource.isPlaying)
+                    secondSource.Play();
+            }
         }
     }
 }

@@ -16,10 +16,16 @@ namespace Logic.Actors
         private Unit _lastVictim;
         private static Transform _lastCloud;
 
-        private Vector3 defaultscale;
+        [HideInInspector]
+        public bool noAllowing = false;
+
+        private SpriteRenderer renderer;
         private bool blockMove = false;
         private void Awake() => _animator = GetComponent<Animator>();
-        private void Start() => defaultscale = transform.localScale;
+        private void Start()
+        {
+            renderer = GetComponent<SpriteRenderer>();
+        }
 
         private void Update()
         {
@@ -29,15 +35,17 @@ namespace Logic.Actors
             if (blockMove)
                 return;
 
-            if (traitorManager.isFreezed && !Input.GetMouseButton(2))
-                traitorManager.isFreezed = false;
+            //if (traitorManager.isFreezed && !Input.GetMouseButton(2))
+            //    traitorManager.isFreezed = false;
 
-            if (Input.GetMouseButton(2))
-                Constants.AllowedMovement = false;
-            else
-                Constants.AllowedMovement = true;
+            TraitorManager.isFreezed = Input.GetMouseButton(1);
 
-            transform.localScale = Input.GetMouseButton(2) ? new Vector3(-defaultscale.x, defaultscale.y, defaultscale.z) : defaultscale;
+            if (!noAllowing)
+                Constants.AllowedMovement = !Input.GetMouseButton(1);
+            
+            renderer.flipX = Input.GetMouseButton(1);
+
+            //transform.localScale = Input.GetMouseButton(1) ? new Vector3(-defaultscale.x, defaultscale.y, defaultscale.z) : defaultscale;
 
             //Unit traitor = traitorManager.GetTraitor();
 
@@ -45,9 +53,9 @@ namespace Logic.Actors
             //    traitor.Scare();
         }
 
-        public void Scare()
+        public void NO(bool value)
         {
-            traitorManager.isFreezed = true;
+            _animator.SetBool("no", value);
         }
 
         public void Kill(Unit victim, Transform cloud)
@@ -87,7 +95,9 @@ namespace Logic.Actors
             clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clone.GetComponent<SpriteRenderer>().sortingOrder = 4;
             Constants.AllowedMovement = true;
-            _lastCloud.gameObject.SetActive(false);
+
+            if (_lastCloud != null)
+                _lastCloud.gameObject.SetActive(false);
             blockMove = false;
         }
 

@@ -5,4 +5,5 @@ public class NamedClips : ScriptableObject
 {
     public AudioClip Clip;
     public string Name;
+    public float volume;
 }

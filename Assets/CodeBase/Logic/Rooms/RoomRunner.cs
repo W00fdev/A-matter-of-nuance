@@ -9,8 +9,6 @@ namespace Logic
     {
         private readonly InputService _input = InputService.Instance;
 
-        [SerializeField] private float _speed;
-
         [HideInInspector] public float FirstOffset; // Sets at spawn
         [HideInInspector] public float CameraBoundsX; // Sets at spawn
         

@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using Data;
 using System;
+using Logic.Actors;
 
 namespace Logic.UI
 {
@@ -25,6 +26,8 @@ namespace Logic.UI
 
         public event Action TimeToSpawnVassalEvent;
 
+        public Unit king;
+
         public void Reveal(ScrollData data)
         {
             gameObject.SetActive(true);
@@ -46,6 +49,8 @@ namespace Logic.UI
 
             // Disable player movement
             Constants.AllowedMovement = false;
+            king.noAllowing = true;
+
             AudioManager.Instance.PlayScrollUp();
 
             ScrollsCount++;
@@ -69,6 +74,7 @@ namespace Logic.UI
         public void Close()
         {
             Constants.AllowedMovement = true;
+            king.noAllowing = false;
             AudioManager.Instance.PlayScrollDown();
             gameObject.SetActive(false);
         }

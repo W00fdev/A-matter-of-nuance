@@ -9,6 +9,8 @@ namespace Logic.UI
         public Bootstrapper Bootstrapper;
         private CanvasGroup _canvasGroup;
 
+        public GameObject soundEnable;
+
         private void Start()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
@@ -16,18 +18,21 @@ namespace Logic.UI
 
         public void ToMainScene()
         {
+            Bootstrapper.StartGame(instant: false);
             StartCoroutine(Fade());
         }
 
         IEnumerator Fade()
         {
-            for (float f = Constants.IntroTime / Constants.IntroTime; f >= 0; f -= 1f / 20f)
+            for (float f = 1; f >= 0; f -= 1f / 20f)
             {
                 _canvasGroup.alpha = f;
-                yield return new WaitForSeconds(1f / 20f * Constants.IntroTime);
+                yield return new WaitForSeconds(3f / 20f);
             }
             _canvasGroup.alpha = 0;
-            Bootstrapper.StartGame(instant: false);
+
+            soundEnable.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
