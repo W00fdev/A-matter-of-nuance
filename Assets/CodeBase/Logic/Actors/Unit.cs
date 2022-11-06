@@ -16,6 +16,9 @@ namespace Logic.Actors
         private Unit _lastVictim;
         private static Transform _lastCloud;
 
+        [HideInInspector]
+        public bool noAllowing = false;
+
         private SpriteRenderer renderer;
         private bool blockMove = false;
         private void Awake() => _animator = GetComponent<Animator>();
@@ -35,9 +38,12 @@ namespace Logic.Actors
             //if (traitorManager.isFreezed && !Input.GetMouseButton(2))
             //    traitorManager.isFreezed = false;
 
-            Constants.AllowedMovement = !Input.GetMouseButton(1);
-            renderer.flipX = Input.GetMouseButton(1);
             TraitorManager.isFreezed = Input.GetMouseButton(1);
+
+            if (!noAllowing)
+                Constants.AllowedMovement = !Input.GetMouseButton(1);
+            
+            renderer.flipX = Input.GetMouseButton(1);
 
             //transform.localScale = Input.GetMouseButton(1) ? new Vector3(-defaultscale.x, defaultscale.y, defaultscale.z) : defaultscale;
 

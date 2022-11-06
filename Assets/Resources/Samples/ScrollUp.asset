@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clip: {fileID: 8300000, guid: f17f0757554b17e4d9ad45d540eab273, type: 3}
   Name: ScrollUp
+  volume: 0.5
