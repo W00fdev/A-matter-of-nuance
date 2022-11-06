@@ -36,11 +36,11 @@ namespace Logic.Actors
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-                walk.Play();
-            
             if (Input.GetMouseButtonUp(0))
                 walk.Stop();
+            else
+            if (Input.GetMouseButtonDown(0))
+                walk.Play();
 
             if (!isKing)
                 return;
