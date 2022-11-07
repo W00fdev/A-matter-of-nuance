@@ -16,6 +16,7 @@ namespace Logic.UI
             _canvasGroup = GetComponent<CanvasGroup>();
         }
 
+        // By unityEvent (RunningString ->)
         public void ToMainScene()
         {
             Bootstrapper.StartGame(instant: false);
@@ -24,10 +25,13 @@ namespace Logic.UI
 
         IEnumerator Fade()
         {
+            yield return new WaitForSeconds(0.5f);
+
+            var faderTick = new WaitForSeconds(1f / 20f);
             for (float f = 1; f >= 0; f -= 1f / 20f)
             {
+                yield return faderTick;
                 _canvasGroup.alpha = f;
-                yield return new WaitForSeconds(3f / 20f);
             }
             _canvasGroup.alpha = 0;
 

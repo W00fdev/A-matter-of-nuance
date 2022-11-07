@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     public float ResourcesMultuplierByVassal = 0.5f;
     public float ResourcesMultiplier = 1f;
 
-    private float _prevBetrayChance = 1f;
-
     public AudioSource win;
     public AudioSource lose;
     public AudioSource main;
@@ -72,8 +70,7 @@ public class GameManager : MonoBehaviour
         lose.Play();
         main.Stop();
 
-        Constants.AllowedMovement = false;
-        Constants.BetrayChance = 1f;
+        DisablePlayer();
     }
 
     public void OnWin()
@@ -82,12 +79,18 @@ public class GameManager : MonoBehaviour
         win.Play();
         main.Stop();
 
+        DisablePlayer();
+    }
+
+    private void DisablePlayer()
+    {
         Constants.AllowedMovement = false;
         Constants.BetrayChance = 1f;
     }
 
     private void ShowTutorialDelayed()
     {
+        DisablePlayer();
         StartCoroutine(TutorialDelay());
 
         KingImmortalUnit.DiedEvent -= ShowTutorialDelayed;
@@ -96,21 +99,17 @@ public class GameManager : MonoBehaviour
     IEnumerator TutorialDelay()
     {
         yield return new WaitForSeconds(TutorialShowDelay);
-
-        Constants.AllowedMovement = false;
-        _prevBetrayChance = Constants.BetrayChance;
-        Constants.BetrayChance = 1f;
-
+        
         TutorialScreen.SetActive(true);
         StartCoroutine(TutorialScreenShowOff());
     }
 
     IEnumerator TutorialScreenShowOff()
     {
+        DisablePlayer();
+
         yield return new WaitForSeconds(TutorialHideDelay);
         TutorialScreen.SetActive(false);
-
-        Constants.BetrayChance = _prevBetrayChance;
     }
 
 }

@@ -19,9 +19,11 @@ namespace Logic.Actors
         [HideInInspector]
         public bool noAllowing = false;
 
-        private SpriteRenderer renderer;
+        private SpriteRenderer spriteRenderer;
         private bool blockMove = false;
 
+        private bool _savedMovementBeforeBlock;
+        private bool _allowedMovementBeforeBlock;
 
         public AudioSource fall;
         public AudioSource blood;
@@ -31,7 +33,7 @@ namespace Logic.Actors
         private void Awake() => _animator = GetComponent<Animator>();
         private void Start()
         {
-            renderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -42,7 +44,7 @@ namespace Logic.Actors
             if (Input.GetMouseButtonUp(0))
                 walk.Stop();
             else
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Constants.AllowedMovement)
                 walk.Play();
 
             if (!isKing)
@@ -53,10 +55,33 @@ namespace Logic.Actors
 
             TraitorManager.isFreezed = Input.GetMouseButton(1);
 
-            if (!noAllowing)
-                Constants.AllowedMovement = !Input.GetMouseButton(1);
+            /*            if (!noAllowing)
+                            Constants.AllowedMovement = !Input.GetMouseButton(1);*/
             
-            renderer.flipX = Input.GetMouseButton(1);
+            if (!noAllowing)
+                AllowedMovementByBlock();
+
+            spriteRenderer.flipX = Input.GetMouseButton(1);
+        }
+
+        private void AllowedMovementByBlock()
+        {
+            bool blockInput = Input.GetMouseButton(1);
+            bool blockInputReleased = Input.GetMouseButtonUp(1);
+
+            if (blockInput == true && _savedMovementBeforeBlock == false)
+            {
+                _allowedMovementBeforeBlock = Constants.AllowedMovement;
+                _savedMovementBeforeBlock = true;
+
+                Constants.AllowedMovement = false;
+            } 
+            else 
+            if (blockInputReleased == true && _savedMovementBeforeBlock == true)
+            {
+                Constants.AllowedMovement = _allowedMovementBeforeBlock;
+                _savedMovementBeforeBlock = false;
+            }
         }
 
         public void NO(bool value)

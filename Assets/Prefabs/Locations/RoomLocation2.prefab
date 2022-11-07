@@ -374,7 +374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2623ca4b7dac1cd4a941dc94e61b88bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
   FirstOffset: 0
   CameraBoundsX: 0
   Length: 35.48

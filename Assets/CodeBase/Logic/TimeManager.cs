@@ -36,7 +36,7 @@ public class TimeManager : MonoBehaviour, IManager
     {
     }
 
-    private void StartWrapper()
+    private void StartWrapper() 
         => StartCoroutine(TickWinter());
 
     IEnumerator FaderBeforeManager()
@@ -49,7 +49,9 @@ public class TimeManager : MonoBehaviour, IManager
     IEnumerator TickWinter()
     {
         TimeManagerUI.ChangeFrozen(0f);
+        
         Constants.IsGameStarted = true;
+        Constants.AllowedMovement = true;
 
         while (_currentTime < WinterTime)
         {
