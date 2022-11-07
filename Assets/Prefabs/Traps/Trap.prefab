@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1810906150783389662}
   - component: {fileID: 1377760477}
   - component: {fileID: 1377760476}
+  - component: {fileID: 2024896023666156401}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -340,6 +341,33 @@ MonoBehaviour:
   _source: {fileID: 1377760477}
   clip: {fileID: 8300000, guid: c2fe446731c4f224ea91c7bf9fb302d0, type: 3}
   clip2: {fileID: 8300000, guid: 6e7ca95d306b1c748a0e7c03673bcc8a, type: 3}
+--- !u!114 &2024896023666156401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447747455650359199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461a58d0265bc764f91dbab7bedd900a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHandle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3563904429223833881}
+        m_TargetAssemblyTypeName: Logic.Interactables.Trap, Assembly-CSharp
+        m_MethodName: AnimKill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6926464937519679606
 GameObject:
   m_ObjectHideFlags: 0

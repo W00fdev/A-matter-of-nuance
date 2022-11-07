@@ -29,17 +29,25 @@ namespace Logic.Interactables
                 Debug.Log("fake");
             else
             {
-                StartCoroutine(LateKill(unit.GetComponent<Unit>()));
-                
+                Debug.Log("sha");
+                lastUnit = unit.GetComponent<Unit>();
+                //unitUnit.noAllowing = true;
+                //lastUnit.BlockMove();
+
+                if (_animator == null)
+                    lastUnit.Die();
+
                 if (_animator != null)
                     _animator.SetTrigger("Attack");
             }
         }
 
-        private IEnumerator LateKill(Unit unit)
+        private Unit lastUnit;
+
+        public void AnimKill()
         {
-            yield return new WaitForSeconds(Constants.PingBeforeTrapDie);
-            unit.Die();
+            Debug.Log("boom");
+            lastUnit.Die();
         }
     }
 }

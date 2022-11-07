@@ -82,10 +82,14 @@ public class GameManager : MonoBehaviour
         DisablePlayer();
     }
 
-    private void DisablePlayer()
+    private float lastBetrayChance;
+    private void DisablePlayer(bool value = false)
     {
-        Constants.AllowedMovement = false;
-        Constants.BetrayChance = 1f;
+        if (!value)
+            lastBetrayChance = Constants.BetrayChance;
+
+        Constants.AllowedMovement = value;
+        Constants.BetrayChance = value ? lastBetrayChance : 1f;
     }
 
     private void ShowTutorialDelayed()
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(TutorialHideDelay);
         TutorialScreen.SetActive(false);
+        DisablePlayer(true);
     }
 
 }

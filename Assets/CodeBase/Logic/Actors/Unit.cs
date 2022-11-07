@@ -115,20 +115,27 @@ namespace Logic.Actors
             blood.Play();
         }
 
-        public void Die()
+        public void BlockMove()
         {
             blockMove = true;
             Constants.AllowedMovement = false;
+        }
+
+        public void Die()
+        {
+            BlockMove();
 
             if (_animator != null)
                 _animator.SetTrigger("fall");
 
             fall.Play();
-            DiedEvent?.Invoke();
+            //DiedEvent?.Invoke();
         }
 
         public void SpriteClone()
         {
+            DiedEvent?.Invoke();
+
             var clone = Instantiate(gameObject, transform.position, Quaternion.identity, roomsSpawner.LastRoom.transform);
             Destroy(clone.GetComponent<Unit>());
             Destroy(clone.GetComponent<BoxCollider>());

@@ -22,10 +22,14 @@ MonoBehaviour:
     consequence:
       id: 1
       text: 
+      hasToCreateVassal: 1
+      hasToLoseVassal: 0
     values: []
   - tooltip: "\u041C\u043D\u0435 \u043D\u0435 \u043D\u0443\u0436\u0435\u043D \u044D\u0442\u043E\u0442
       \u0432\u0430\u0441\u0441\u0430\u043B"
     consequence:
       id: 2
       text: 
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values: []
