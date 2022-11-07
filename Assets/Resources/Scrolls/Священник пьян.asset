@@ -20,7 +20,9 @@ MonoBehaviour:
       \u043D\u0430 \u043F\u043B\u0430\u0445\u0443"
     consequence:
       id: 1
-      text: 
+      text: "\u041E\u043D \u0443\u043C\u0435\u0440"
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 0
       deltaValue: -7
@@ -30,7 +32,10 @@ MonoBehaviour:
       \u0433\u0440\u0435\u0445\u0438"
     consequence:
       id: 2
-      text: 
+      text: "\u041E\u043D \u043E\u0431\u0440\u0443\u0433\u0430\u043B \u0432\u0430\u0441
+        \u0437\u0430 \u043C\u044F\u0433\u043A\u043E\u0442\u0435\u043B\u043E\u0441\u0442\u044C"
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 0
       deltaValue: 6

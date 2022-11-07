@@ -19,7 +19,7 @@ MonoBehaviour:
   - tooltip: "\u0410\u043C\u0438\u043D\u044C"
     consequence:
       id: 1
-      text: 
+      text: "\u0412\u043E\u0438\u0441\u0442\u0438\u043D\u0443"
       hasToCreateVassal: 1
       hasToLoseVassal: 0
     values:
@@ -31,7 +31,7 @@ MonoBehaviour:
       \u0442\u0430\u043A\u043E\u0433\u043E"
     consequence:
       id: 2
-      text: 
+      text: "\u0414\u0435\u043C\u0435\u043D\u0446\u0438\u044F?"
       hasToCreateVassal: 0
       hasToLoseVassal: 0
     values:

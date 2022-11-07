@@ -20,7 +20,9 @@ MonoBehaviour:
   - tooltip: "\u0410\u043C\u0438\u043D\u044C"
     consequence:
       id: 1
-      text: 
+      text: "\u0414\u0443\u0445 \u0443\u043A\u0440\u0435\u043F\u0438\u043B\u0441\u044F"
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 2
       deltaValue: 2

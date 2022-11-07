@@ -21,12 +21,20 @@ MonoBehaviour:
       \u0414\u0430\u0442\u044C \u0435\u043C\u0443 \u0430\u0440\u043C\u0438\u044E"
     consequence:
       id: 1
-      text: 
+      text: "\u0421\u0438\u0440 \u041B\u044E\u0434\u0432\u0438\u0433 \u0434\u043E\u0432\u043E\u043B\u0435\u043D.
+        \u0411\u0443\u0434\u0435\u043C \u043D\u0430\u0434\u0435\u044F\u0442\u0441\u044F
+        \u043E\u043D \u043D\u0435 \u0432\u043E\u0442\u043A\u043D\u0435\u0442 \u0432\u0430\u043C
+        \u043D\u043E\u0436 \u0432 \u0441\u043F\u0438\u043D\u0443"
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 1
       deltaValue: -7
   - tooltip: "\u041F\u0443\u0441\u0442\u044C \u043F\u0440\u043E\u0432\u0430\u043B\u0438\u0432\u0430\u0435\u0442"
     consequence:
       id: 2
-      text: 
+      text: "\u041B\u044E\u0434\u0432\u0438\u0433 \u0431\u043E\u043B\u044C\u0448\u0435
+        \u043D\u0435 \u0432\u0430\u0448 \u0421\u0438\u0440..."
+      hasToCreateVassal: 0
+      hasToLoseVassal: 1
     values: []

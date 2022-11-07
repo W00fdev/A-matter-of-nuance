@@ -21,7 +21,10 @@ MonoBehaviour:
       \u0414\u0430\u0442\u044C \u0435\u043C\u0443 \u043C\u043E\u043D\u0430\u0448\u0435\u043A"
     consequence:
       id: 1
-      text: 
+      text: "\u0421\u0438\u0440 \u041A\u0430\u0440\u043B \u043E\u0441\u0442\u0430\u043B\u0441\u044F
+        \u043D\u043E \u0440\u0435\u043B\u0438\u0433\u0438\u044F \u043F\u043E\u0448\u0430\u0442\u043D\u0443\u043B\u0430\u0441\u044C..."
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 0
       deltaValue: -7
@@ -29,5 +32,7 @@ MonoBehaviour:
       \u0441\u0430\u043C\u043E\u043C\u0443 \u043D\u0443\u0436\u043D\u044B \u043C\u043E\u043D\u0430\u0448\u043A\u0438"
     consequence:
       id: 2
-      text: 
+      text: "\u0421\u0438\u0440 \u041A\u0430\u0440\u043B \u0443\u0448\u0435\u043B"
+      hasToCreateVassal: 0
+      hasToLoseVassal: 1
     values: []
