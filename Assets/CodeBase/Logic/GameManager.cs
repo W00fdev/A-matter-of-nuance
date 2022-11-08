@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         DefeatScreen.SetActive(true);
         lose.Play();
         main.Stop();
-
+        Constants.IsGameStarted = false;
         DisablePlayer();
     }
 
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         WinScreen.SetActive(true);
         win.Play();
         main.Stop();
-
+        Constants.IsGameStarted = false;
         DisablePlayer();
     }
 

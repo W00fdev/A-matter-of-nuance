@@ -73,6 +73,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3448203912921463304}
+        m_TargetAssemblyTypeName: Logic.Interactables.Trap, Assembly-CSharp
+        m_MethodName: Forget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &533956899740963040
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +161,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3448203912921463302
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +264,7 @@ Animator:
   m_GameObject: {fileID: 3448203912921463302}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1e841eabac187fe43a1d5c559cc8b88c, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0869cdb99ae09534b8d658517ba6b6bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -380,3 +398,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeChance: 0.5
+  _animator: {fileID: 0}

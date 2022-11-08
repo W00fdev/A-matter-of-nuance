@@ -6,8 +6,9 @@ namespace Infrastructure
     {
         private static InputService _instance;
         public static InputService Instance => _instance ??= new InputService();
-
-        public bool IsRunButton() => Input.GetMouseButton(0);
+        
+        // i'm tired of left mouse button
+        public bool IsRunButton() => true;//Input.GetMouseButton(0);
         public bool IsAttackButton() => Input.GetMouseButton(1);
 
         public bool IsLeftMouseButtonDown() => Input.GetMouseButtonDown(0);

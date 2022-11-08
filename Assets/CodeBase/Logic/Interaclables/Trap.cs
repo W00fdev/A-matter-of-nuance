@@ -10,6 +10,7 @@ namespace Logic.Interactables
         public float fakeChance;
 
         public Animator _animator;
+        private Unit lastUnit;
 
         private void Awake()
         {
@@ -19,35 +20,27 @@ namespace Logic.Interactables
 
         public void Prepare(GameObject unit)
         {
-            if (_animator != null)
-                _animator.SetTrigger("Prepare");
+            lastUnit = null;
+            _animator.SetTrigger("Prepare");
+            _animator.SetBool("isFake", Random.value >= fakeChance);
         }
 
         public void Enable(GameObject unit)
         {
-            if (Random.value >= fakeChance)
-                Debug.Log("fake");
+            if (_animator.GetBool("isFake"))
+                enabled = false;
             else
-            {
-                Debug.Log("sha");
                 lastUnit = unit.GetComponent<Unit>();
-                //unitUnit.noAllowing = true;
-                //lastUnit.BlockMove();
-
-                if (_animator == null)
-                    lastUnit.Die();
-
-                if (_animator != null)
-                    _animator.SetTrigger("Attack");
-            }
         }
-
-        private Unit lastUnit;
 
         public void AnimKill()
         {
-            Debug.Log("boom");
+            if (lastUnit == null)
+                return;
+
             lastUnit.Die();
+            lastUnit = null;
+            enabled = false;
         }
     }
 }

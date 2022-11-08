@@ -44,7 +44,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ee4ccb1a27d4e684ba17d5ff631368b6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 257be8002f4e0dc4489633db2f0dc19b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -134,7 +134,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Knight
+  m_Name: _trap
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Prepare
@@ -182,7 +182,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8b743110c3ab745449a2767b57c71f87, type: 2}
+  m_Motion: {fileID: 7400000, guid: 32a1379c7d82af149830f936b43cb3ac, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -209,7 +209,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2e066625b276a4244b6352e2af947b25, type: 2}
+  m_Motion: {fileID: 7400000, guid: 26fcd9d3b657bda419ea85b1a3e7f701, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -1,3 +1,4 @@
+using Infrastructure;
 using System;
 using UnityEngine;
 
@@ -27,7 +28,6 @@ namespace Logic.Actors
 
         public AudioSource fall;
         public AudioSource blood;
-        public AudioSource walk;
         public AudioSource died;
 
         private void Awake() => _animator = GetComponent<Animator>();
@@ -41,27 +41,16 @@ namespace Logic.Actors
             if (!Constants.IsGameStarted)
                 return;
 
-            if (Input.GetMouseButtonUp(0))
-                walk.Stop();
-            else
-            if (Input.GetMouseButtonDown(0) && Constants.AllowedMovement)
-                walk.Play();
-
             if (!isKing)
                 return;
 
             if (blockMove)
                 return;
 
-            TraitorManager.isFreezed = Input.GetMouseButton(1);
+            spriteRenderer.flipX = TraitorManager.isFreezed = InputService.Instance.IsAttackButton();
 
-            /*            if (!noAllowing)
-                            Constants.AllowedMovement = !Input.GetMouseButton(1);*/
-            
             if (!noAllowing)
                 AllowedMovementByBlock();
-
-            spriteRenderer.flipX = Input.GetMouseButton(1);
         }
 
         private void AllowedMovementByBlock()
