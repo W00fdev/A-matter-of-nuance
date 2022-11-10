@@ -11,6 +11,7 @@ namespace Logic.Actors
         [Header("Settings")]
         public float periodInSeconds;
         public float cooldown;
+        public bool hasOnlyOneLife;
 
         [Header("References")]
         public Transform actorSpotsContainer;
@@ -46,10 +47,15 @@ namespace Logic.Actors
         }
         private void OnKingDied()
         {
-            if (GetTraitor() == null)
+            if (hasOnlyOneLife)
                 manager.OnLose();
             else
-                Destroy(GetTraitor().gameObject);
+            {
+                if (GetTraitor() == null)
+                    manager.OnLose();
+                else
+                    Destroy(GetTraitor().gameObject);
+            }
 
             foreach (Transform spot in actorSpotsContainer)
             {

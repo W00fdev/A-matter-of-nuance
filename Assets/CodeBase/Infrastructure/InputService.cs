@@ -12,5 +12,6 @@ namespace Infrastructure
         public bool IsAttackButton() => Input.GetMouseButton(1);
 
         public bool IsLeftMouseButtonDown() => Input.GetMouseButtonDown(0);
+        public bool IsLeftMouseButton() => Input.GetMouseButton(0);
     }
 }

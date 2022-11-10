@@ -2,6 +2,7 @@ using Infrastructure;
 using Logic;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class TimeManager : MonoBehaviour, IManager
 {
@@ -23,6 +24,8 @@ public class TimeManager : MonoBehaviour, IManager
 
     public AudioSource firstSource;
     public AudioSource secondSource;
+
+    public event Action onWinterEnds;
 
     public void EnableManager(bool instant)
     {
@@ -76,5 +79,7 @@ public class TimeManager : MonoBehaviour, IManager
                     firstSource.Play();
             }
         }
+
+        onWinterEnds.Invoke();
     }
 }

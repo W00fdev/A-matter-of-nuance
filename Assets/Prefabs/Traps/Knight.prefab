@@ -79,7 +79,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3448203912921463304}
         m_TargetAssemblyTypeName: Logic.Interactables.Trap, Assembly-CSharp
         m_MethodName: Forget
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

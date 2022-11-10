@@ -2,39 +2,55 @@ using System.Collections;
 using Logic.Actors;
 using UnityEngine;
 using Logic;
+using System;
+using Infrastructure;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IManager
 {
-    public ResourcesManager ResourcesManager;
-    public VassalSpawner VassalSpawner;
+    [Header("Win conditions")]
+    public bool HasToWinWhenWinterEnds;
 
-    public Unit KingImmortalUnit;
-
-    public GameObject DefeatScreen;
-    public GameObject WinScreen;
-    public GameObject TutorialScreen;
-
+    [Header("Tutorial Options")]
+    public bool HasToShowTutorialAtStart = false;
+    public bool CanInterruptTutorial = false;
     public float TutorialShowDelay = 3f;
     public float TutorialHideDelay = 5f;
 
+    [Header("Vassal multipliers")]
     public float SpeedByVassal = 0.5f;
     public float ResourcesMultuplierByVassal = 0.5f;
     public float ResourcesMultiplier = 1f;
 
+    [Header("Audios")]
     public AudioSource win;
     public AudioSource lose;
     public AudioSource main;
+
+    [Header("References")]
+    public ResourcesManager ResourcesManager;
+    public VassalSpawner VassalSpawner;
+    public TimeManager TimeManager;
+    public Unit KingImmortalUnit;
+    [Space]
+    public GameObject DefeatScreen;
+    public GameObject WinScreen;
+    public GameObject TutorialScreen;
 
     private void Start()
     {
         ResourcesManager.WinEvent += OnWin;
         ResourcesManager.LoseEvent += OnLose;
 
+        if (HasToWinWhenWinterEnds)
+            TimeManager.onWinterEnds += OnWin;
+
         VassalSpawner.VassalSpawnedEvent += RiseMultiplier;
         VassalSpawner.VassalDeletedEvent += DownMultiplier;
 
         KingImmortalUnit.DiedEvent += ClearMultiplier;
-        KingImmortalUnit.DiedEvent += ShowTutorialDelayed;
+
+        if (!HasToShowTutorialAtStart)
+            KingImmortalUnit.DiedEvent += ShowTutorialDelayed;
     }
 
     private void RiseMultiplier()
@@ -97,7 +113,8 @@ public class GameManager : MonoBehaviour
         DisablePlayer();
         StartCoroutine(TutorialDelay());
 
-        KingImmortalUnit.DiedEvent -= ShowTutorialDelayed;
+        if (!HasToShowTutorialAtStart)
+            KingImmortalUnit.DiedEvent -= ShowTutorialDelayed;
     }
 
     IEnumerator TutorialDelay()
@@ -112,9 +129,38 @@ public class GameManager : MonoBehaviour
     {
         DisablePlayer();
 
-        yield return new WaitForSeconds(TutorialHideDelay);
+        float timeSpent = 0;
+
+        while (timeSpent < TutorialHideDelay)
+        {
+            yield return new WaitForEndOfFrame();
+            timeSpent += Time.deltaTime;
+
+            if (CanInterruptTutorial)
+                if (InputService.Instance.IsLeftMouseButton())
+                    break;
+        }
+
         TutorialScreen.SetActive(false);
         DisablePlayer(true);
     }
 
+    public void EnableManager(bool instant)
+    {
+        if (!HasToShowTutorialAtStart)
+            return;
+
+        if (instant == false)
+            StartCoroutine(WaitAndDo(Constants.IntroTime, ShowTutorialDelayed));
+        else
+            ShowTutorialDelayed();
+    }
+
+    public void DisableManager() { }
+
+    IEnumerator WaitAndDo(float time, Action action)
+    {
+        yield return new WaitForSeconds(time);
+        action();
+    }
 }

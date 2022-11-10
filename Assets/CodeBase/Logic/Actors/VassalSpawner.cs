@@ -47,6 +47,10 @@ namespace Logic.Actors
                     if (last != null)
                     {
                         Unit unit = last.GetChild(0).GetComponent<Unit>();
+
+                        if (unit.isKing)
+                            break;
+
                         unit.Run();
 
                         VassalDeletedEvent?.Invoke();
