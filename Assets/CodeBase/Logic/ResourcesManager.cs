@@ -7,16 +7,22 @@ public enum ResourceWinType { RELIGION, ARMY, FOOD };
 
 public class ResourcesManager : MonoBehaviour
 {
+    [Header("Settings")]
+    public bool CanMultiplyIncreasing;
+    public bool CanMultiplyDecreasing;
+
+    [Header("Values")]
     public float Religion;
     public float Army;
     public float Food;
 
+    [Header("Finish conditions")]
     public float MaxResource;
     public float CriticalResource;
-
     public ResourceWinType WinType;
-    public ResourcesUI ResourcesUI;
 
+    [Header("References")]
+    public ResourcesUI ResourcesUI;
     public GameManager GameManager;
 
     public event Action LoseEvent; 
@@ -31,7 +37,7 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeReligion(float changed)
     {
-        Religion = Mathf.Clamp(Religion + GameManager.ResourcesMultiplier * changed, 0f, MaxResource);
+        Religion = Mathf.Clamp(Religion + Multiply(changed), 0f, MaxResource);
         ResourcesUI.UpdateReligion(Religion / MaxResource);
 
         if (Religion <= CriticalResource)
@@ -43,7 +49,7 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeArmy(float changed)
     {
-        Army = Mathf.Clamp(Army + GameManager.ResourcesMultiplier * changed, 0f, MaxResource);
+        Army = Mathf.Clamp(Army + Multiply(changed), 0f, MaxResource);
         ResourcesUI.UpdateArmy(Army / MaxResource);
 
         if (Army <= CriticalResource)
@@ -55,14 +61,24 @@ public class ResourcesManager : MonoBehaviour
 
     public void ChangeFood(float changed)
     {
-        Food = Mathf.Clamp(Food + GameManager.ResourcesMultiplier * changed, 0f, MaxResource);
+        Food = Mathf.Clamp(Food + Multiply(changed), 0f, MaxResource);
         ResourcesUI.UpdateFood(Food / MaxResource);
-
 
         if (Food <= CriticalResource)
             LoseEvent?.Invoke();
 
         if (Food >= MaxResource && WinType == ResourceWinType.FOOD)
             WinEvent?.Invoke();
+    }
+
+    private float Multiply(float value)
+    {
+        if (CanMultiplyIncreasing && value > 0)
+            return GameManager.ResourcesMultiplier * value;
+        else
+        if (CanMultiplyDecreasing && value < 0)
+            return GameManager.ResourcesMultiplier * value;
+
+        return value;
     }
 }
