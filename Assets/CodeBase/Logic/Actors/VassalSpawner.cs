@@ -16,6 +16,21 @@ namespace Logic.Actors
         public event Action VassalSpawnedEvent;
         public event Action VassalDeletedEvent;
 
+        public int GetCount()
+        {
+            int count = 0;
+
+            foreach (Transform spot in actorSpotsContainer)
+            {
+                if (spot.childCount == 0)
+                    break;
+
+                count++;
+            }
+
+            return count - 1;
+        }
+
         private RandomizedCycle<GameObject> _prefabCycle;
 
         private void Start()
