@@ -3404,7 +3404,7 @@ MonoBehaviour:
   HasToShowTutorialAtStart: 1
   CanInterruptTutorial: 1
   TutorialShowDelay: 1
-  TutorialHideDelay: 8
+  TutorialHideDelay: 10
   SpeedByVassal: 0.4
   ResourcesMultuplierByVassal: 0.25
   ResourcesMultiplier: 1
