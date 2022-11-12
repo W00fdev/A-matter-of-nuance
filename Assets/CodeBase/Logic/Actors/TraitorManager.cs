@@ -35,7 +35,10 @@ namespace Logic.Actors
 
         public void DisableManager() { }
 
-        private void Start() => GetKing().DiedEvent += OnKingDied;
+        private void Start()
+        {
+            GetKing().DiedEvent += OnKingDied;
+        }
 
         private void Update()
         {
@@ -87,6 +90,9 @@ namespace Logic.Actors
                     continue;
 
                 if (UnityEngine.Random.value > Constants.BetrayChance)
+                    continue;
+
+                if (!Constants.IsGameStarted)
                     continue;
 
                 var traitor = GetTraitor();
