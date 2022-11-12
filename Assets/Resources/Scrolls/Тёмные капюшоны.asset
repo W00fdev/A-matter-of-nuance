@@ -27,11 +27,11 @@ MonoBehaviour:
       hasToLoseVassal: 0
     values:
     - resourceType: 2
-      deltaValue: -10
+      deltaValue: -5
     - resourceType: 0
-      deltaValue: -20
+      deltaValue: -15
     - resourceType: 1
-      deltaValue: 20
+      deltaValue: 10
   - tooltip: "\u041D\u0438 \u0437\u0430 \u0447\u0442\u043E"
     consequence:
       id: 2
@@ -43,4 +43,4 @@ MonoBehaviour:
       hasToLoseVassal: 0
     values:
     - resourceType: 0
-      deltaValue: 30
+      deltaValue: 10

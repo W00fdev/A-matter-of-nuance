@@ -27,7 +27,7 @@ MonoBehaviour:
     - resourceType: 0
       deltaValue: -7
     - resourceType: 1
-      deltaValue: 10
+      deltaValue: 8
   - tooltip: "\u041E\u0442\u043F\u0443\u0441\u0442\u0438\u0442\u0435 \u0435\u043C\u0443
       \u0433\u0440\u0435\u0445\u0438"
     consequence:
