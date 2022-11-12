@@ -25,4 +25,4 @@ MonoBehaviour:
       hasToLoseVassal: 0
     values:
     - resourceType: 2
-      deltaValue: 9
+      deltaValue: 8
