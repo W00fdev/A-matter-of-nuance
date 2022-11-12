@@ -22,6 +22,8 @@ MonoBehaviour:
     consequence:
       id: 1
       text: 
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 0
       deltaValue: 7
@@ -29,6 +31,8 @@ MonoBehaviour:
     consequence:
       id: 2
       text: 
+      hasToCreateVassal: 0
+      hasToLoseVassal: 0
     values:
     - resourceType: 0
-      deltaValue: -3
+      deltaValue: -6
