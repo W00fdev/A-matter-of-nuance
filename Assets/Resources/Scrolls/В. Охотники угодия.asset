@@ -23,7 +23,7 @@ MonoBehaviour:
       id: 1
       text: 
       hasToCreateVassal: 0
-      hasToLoseVassal: 0
+      hasToLoseVassal: 1
     values:
     - resourceType: 2
       deltaValue: 30
