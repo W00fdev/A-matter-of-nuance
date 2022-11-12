@@ -29,6 +29,7 @@ namespace Logic.Actors
         public AudioSource fall;
         public AudioSource blood;
         public AudioSource died;
+        public AudioSource taunt;
 
         private void Awake() => _animator = GetComponent<Animator>();
         private void Start()
@@ -87,6 +88,8 @@ namespace Logic.Actors
             _lastVictim = victim;
             _lastCloud = cloud;
         }
+
+        public void Taunt() => taunt.Play();
 
         public void OnBetrayal()
         {

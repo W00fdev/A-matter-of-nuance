@@ -8,16 +8,23 @@ public class ResourcesUI : MonoBehaviour
     public Image Army;
     public Image Food;
 
-    private void Awake()
-    {
-    }
+    [Range(0f, 1f)]
+    public float alertValue;
+    public Color okayColor;
+    public Color alertColor;
 
-    public void UpdateReligion(float newValue)
-        => Religion.fillAmount = newValue;
+    public void UpdateReligion(float newValue) 
+        => UpdateResource(Religion, newValue);
 
-    public void UpdateFood(float newValue) 
-        => Food.fillAmount = newValue;
+    public void UpdateFood(float newValue)
+        => UpdateResource(Food, newValue);
 
     public void UpdateArmy(float newValue)
-        => Army.fillAmount = newValue;
+        => UpdateResource(Army, newValue);
+
+    private void UpdateResource(Image image, float newValue)
+    {
+        image.fillAmount = newValue;
+        image.color = newValue > alertValue ? okayColor : alertColor;
+    }
 }
