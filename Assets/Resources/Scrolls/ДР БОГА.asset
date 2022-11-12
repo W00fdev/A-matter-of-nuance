@@ -38,4 +38,4 @@ MonoBehaviour:
     - resourceType: 2
       deltaValue: 8
     - resourceType: 0
-      deltaValue: -10
+      deltaValue: -20
