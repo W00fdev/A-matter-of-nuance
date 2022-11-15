@@ -4298,7 +4298,7 @@ MonoBehaviour:
   Food: 50
   MaxResource: 100
   CriticalResource: 5
-  WinType: 0
+  WinType: 2
   ResourcesUI: {fileID: 1826432376}
   GameManager: {fileID: 1453655258}
 --- !u!1 &1916878405
