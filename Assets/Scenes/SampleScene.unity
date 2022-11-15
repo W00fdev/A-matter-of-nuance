@@ -3444,9 +3444,9 @@ MonoBehaviour:
   HasToShowTutorialAtStart: 1
   CanInterruptTutorial: 1
   TutorialShowDelay: 1
-  TutorialHideDelay: 10
+  TutorialHideDelay: 12
   SpeedByVassal: 0.4
-  ResourcesMultuplierByVassal: 0.25
+  ResourcesMultuplierByVassal: 0.23
   ResourcesMultiplier: 1
   win: {fileID: 1681127391}
   lose: {fileID: 1250981965}
@@ -4293,11 +4293,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanMultiplyIncreasing: 1
   CanMultiplyDecreasing: 0
-  Religion: 50
-  Army: 50
-  Food: 50
+  Religion: 48
+  Army: 48
+  Food: 48
   MaxResource: 100
-  CriticalResource: 5
+  CriticalResource: 3
   WinType: 2
   ResourcesUI: {fileID: 1826432376}
   GameManager: {fileID: 1453655258}

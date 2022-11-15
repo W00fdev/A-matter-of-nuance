@@ -31,14 +31,15 @@ MonoBehaviour:
     - resourceType: 0
       deltaValue: -14
   - tooltip: "\u041F\u044C\u044F\u043D\u044B\u0435 \u043C\u043E\u043D\u0430\u0448\u043A\u0438
-      - \u044D\u0442\u043E \u0443\u0436\u0435 \u043F\u0435\u0440\u0435\u0431\u043E\u0440"
+      - \u044D\u0442\u043E \u0443\u0436\u0435 \u043F\u0435\u0440\u0435\u0431\u043E\u0440. "
     consequence:
       id: 2
-      text: 
+      text: "\u0412\u0438\u043D\u043E\u0432\u043D\u044B\u0435 \u0431\u044B\u043B\u0438
+        \u043D\u0430\u043A\u0430\u0437\u0430\u043D\u044B"
       hasToCreateVassal: 0
       hasToLoseVassal: 0
     values:
     - resourceType: 0
       deltaValue: 5
     - resourceType: 1
-      deltaValue: -14
+      deltaValue: -12
