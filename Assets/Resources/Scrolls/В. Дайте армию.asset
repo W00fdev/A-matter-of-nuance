@@ -21,7 +21,7 @@ MonoBehaviour:
     consequence:
       id: 1
       text: 
-      hasToCreateVassal: 0
+      hasToCreateVassal: 1
       hasToLoseVassal: 0
     values:
     - resourceType: 1
@@ -31,5 +31,5 @@ MonoBehaviour:
       id: 2
       text: 
       hasToCreateVassal: 0
-      hasToLoseVassal: 1
+      hasToLoseVassal: 0
     values: []
