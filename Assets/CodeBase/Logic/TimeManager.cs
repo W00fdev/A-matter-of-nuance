@@ -9,7 +9,8 @@ public class TimeManager : MonoBehaviour, IManager
     public TimeManagerUI TimeManagerUI;
 
     [Header("Время для игрока")]
-    public float WinterTime = 5 * 60f;
+    // 0.4f * 60f removed
+    public float WinterTime = 4f * 60f;
 
     [Header("Время тика таймера")]
     public float WinterTickTime = 5f;
@@ -56,9 +57,23 @@ public class TimeManager : MonoBehaviour, IManager
         Constants.IsGameStarted = true;
         Constants.AllowedMovement = true;
 
+        // Return original values from restart
+        Constants.SpeedRoom = 3f;
+        Constants.TrapChance = 0.4f;
+        Constants.BetrayChance = 1f;
+        // Return original values from restart
+
         while (_currentTime < WinterTime)
         {
-            yield return new WaitForSeconds(WinterTickTime);
+            float winterTickTimeElapsed = 0f;
+            while (winterTickTimeElapsed < WinterTickTime)
+            {
+                // Prevent stop-game win
+                yield return null;
+
+                if (Constants.AllowedMovement == true)
+                    winterTickTimeElapsed += Time.deltaTime;
+            }    
             _currentTime += WinterTickTime;
             TimeManagerUI.ChangeFrozen(_currentTime / WinterTime);
 

@@ -129,10 +129,12 @@ namespace Logic.Actors
             DiedEvent?.Invoke();
 
             var clone = Instantiate(gameObject, transform.position, Quaternion.identity, roomsSpawner.LastRoom.transform);
+            
             Destroy(clone.GetComponent<Unit>());
             Destroy(clone.GetComponent<BoxCollider>());
             Destroy(clone.GetComponent<Rigidbody>());
             Destroy(clone.GetComponent<Animator>());
+            
             clone.transform.position = (Vector2)clone.transform.position;
             clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clone.GetComponent<SpriteRenderer>().sortingOrder = 4;
