@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour, IManager
 
     [Header("Время для игрока")]
     // 0.4f * 60f removed
-    public float WinterTime = 4f * 60f;
+    public float WinterTime;
 
     [Header("Время тика таймера")]
     public float WinterTickTime = 5f;
@@ -77,7 +77,7 @@ public class TimeManager : MonoBehaviour, IManager
             _currentTime += WinterTickTime;
             TimeManagerUI.ChangeFrozen(_currentTime / WinterTime);
 
-            Constants.SpeedRoom = Mathf.Clamp(maxSpeed * (_currentTime / WinterTime), initialSpeed, maxSpeed);
+            Constants.SpeedRoom = Mathf.Clamp(initialSpeed + (maxSpeed - initialSpeed) * (_currentTime / WinterTime), initialSpeed, maxSpeed);
 
             if (_currentTime >= winterSecondThreshold)
             {
