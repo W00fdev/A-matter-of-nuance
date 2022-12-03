@@ -2404,7 +2404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2888049485341148677, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2888049485341148677, guid: fa81c43a0d0eea849aaf000067011933, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9980,7 +9980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   periodInSeconds: 7
-  cooldown: 5
+  cooldown: 15
   hasOnlyOneLife: 1
   actorSpotsContainer: {fileID: 489498048}
   cloud: {fileID: 1201527274}

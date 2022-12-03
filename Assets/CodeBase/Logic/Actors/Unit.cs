@@ -74,6 +74,8 @@ namespace Logic.Actors
             }
         }
 
+        public void Discover() => spriteRenderer.enabled = true;
+
         public void NO(bool value)
         {
             //if (_animator.GetBool("no") && value)
