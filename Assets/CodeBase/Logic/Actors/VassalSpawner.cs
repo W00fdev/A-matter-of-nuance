@@ -2,6 +2,7 @@ using Logic.Interactables;
 using UnityEngine;
 using System;
 using Data;
+using System.Collections;
 
 namespace Logic.Actors
 {
@@ -91,8 +92,20 @@ namespace Logic.Actors
             if (nextSpot == null)
                 return;
 
-            Instantiate(_prefabCycle.GetNext(), nextSpot);
+            SpriteRenderer vassalSprite = Instantiate(_prefabCycle.GetNext(), nextSpot).transform.GetComponent<SpriteRenderer>();
+
+            // Remove the bug with sprite jiggling on instantiate
+            vassalSprite.enabled = false;
+            StartCoroutine(ShowVassalNextFrame(vassalSprite));
+            // Remove the bug with sprite jiggling on instantiate
+
             VassalSpawnedEvent?.Invoke();
+        }
+
+        IEnumerator ShowVassalNextFrame(SpriteRenderer spriteRenderer)
+        {
+            yield return null;
+            spriteRenderer.enabled = true;
         }
     }
 }

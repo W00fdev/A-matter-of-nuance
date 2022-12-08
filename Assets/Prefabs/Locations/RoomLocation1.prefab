@@ -1652,6 +1652,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2645275637729332790, guid: e12d0bb3b8735d444874ebdf4cedde04, type: 3}
+      propertyPath: m_Intensity
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2645275637729332790, guid: e12d0bb3b8735d444874ebdf4cedde04, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.8624674
+      objectReference: {fileID: 0}
+    - target: {fileID: 2645275637729332790, guid: e12d0bb3b8735d444874ebdf4cedde04, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 7.2458496
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672851393165675617, guid: e12d0bb3b8735d444874ebdf4cedde04, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999692
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672851393165675617, guid: e12d0bb3b8735d444874ebdf4cedde04, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00784966
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12d0bb3b8735d444874ebdf4cedde04, type: 3}
 --- !u!4 &7742371243399340600 stripped
