@@ -16,7 +16,7 @@ public class RandomizedCycle<T>
         Requeue();
     }
 
-    public T GetNext()
+    public virtual T GetNext()
     {
         if (_queue.Count == 0)
             Requeue();
@@ -42,28 +42,59 @@ public class RandomizedCycle<T>
     }
 }
 
-public sealed class RandomizedCycleScrolls : RandomizedCycle<ScrollData>
+public class RandomizedCycleScrolls 
 {
-    public RandomizedCycleScrolls(ScrollData[] data) : base(data)
+    private Queue<ScrollData> _queue = new();
+    private Queue<ScrollData> _queueAdditional = new();
+
+    public new readonly ScrollData[] data;
+
+    public RandomizedCycleScrolls(ScrollData[] data) 
     {
+        this.data = data;
+        Requeue();
     }
 
-    protected override void Requeue()
+    public ScrollData GetNext()
+    {
+        if (_queue.Count == 0)
+            Requeue();
+
+        if (_queueAdditional.Count != 0)
+        {
+            if (Constants.VassalsCount > 0)
+            {
+                if (Random.value <= 0.15f)
+                    return _queueAdditional.Dequeue();
+            }
+        }
+
+        return _queue.Dequeue();
+    }
+
+    protected void Requeue()
     {
         List<int> used = new();
 
         _queue = new Queue<ScrollData>(data.Length);
+        _queueAdditional.Clear();
 
-        while (_queue.Count != data.Length)
+        int actualLength = data.Length;
+
+        while (_queue.Count != actualLength)
         {
             int nextId = Random.Range(0, data.Length);
 
             if (used.Contains(nextId))
                 continue;
 
-            if (Constants.VassalsCount == 0)
-                if (data[nextId].NeedVassal == true)
-                    continue;
+            if (data[nextId].NeedVassal == true)
+            {
+                _queueAdditional.Enqueue(data[nextId]);
+                used.Add(nextId);
+                actualLength--;
+                continue;
+            }
 
             _queue.Enqueue(data[nextId]);
             used.Add(nextId);
