@@ -37,7 +37,7 @@ namespace Logic.Interactables
         public void Enable(GameObject unit)
         {
             if (_state != State.Prepared)
-                return;
+                _animator.SetTrigger("Attack");
 
             if (_animator.GetBool("isFake"))
                 enabled = false;
@@ -47,13 +47,20 @@ namespace Logic.Interactables
             _state = State.Enabled;
         }
 
-        public void Forget() => lastUnit = null;
+        public void Forget() => StartCoroutine(FogretIn07Sec());
+
         public void AnimKill()
         {
             if (lastUnit != null)
                 lastUnit.Die();
 
             Destroy(this);
+        }
+
+        IEnumerator FogretIn07Sec()
+        {
+            yield return new WaitForSeconds(0.7f);
+            lastUnit = null;
         }
     }
 }

@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour, IManager
     public GameObject WinScreen;
     public GameObject TutorialScreen;
 
+    private float _lastBetrayChance;
+
+
     private void Start()
     {
         ResourcesManager.WinEvent += OnWin;
@@ -85,6 +88,8 @@ public class GameManager : MonoBehaviour, IManager
         DefeatScreen.SetActive(true);
         lose.Play();
         main.Stop();
+        // Вырубаем счетчик времени и звуки ветра (почему это блять в тайм менеджере одному мише известно)
+        TimeManager.DisableManager();
         Constants.IsGameStarted = false;
         DisablePlayer();
     }
@@ -98,14 +103,13 @@ public class GameManager : MonoBehaviour, IManager
         DisablePlayer();
     }
 
-    private float lastBetrayChance;
     private void DisablePlayer(bool value = false)
     {
         if (!value)
-            lastBetrayChance = Constants.BetrayChance;
+            _lastBetrayChance = Constants.BetrayChance;
 
         Constants.AllowedMovement = value;
-        Constants.BetrayChance = value ? lastBetrayChance : 1f;
+        Constants.BetrayChance = value ? _lastBetrayChance : 1f;
     }
 
     private void ShowTutorialDelayed()

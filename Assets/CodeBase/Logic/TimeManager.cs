@@ -28,6 +28,8 @@ public class TimeManager : MonoBehaviour, IManager
 
     public event Action onWinterEnds;
 
+    private Coroutine _winterCoroutine;
+
     public void EnableManager(bool instant)
     {
         if (instant == false)
@@ -38,10 +40,18 @@ public class TimeManager : MonoBehaviour, IManager
 
     public void DisableManager()
     {
+        if (_winterCoroutine != null)
+        {
+            StopCoroutine(_winterCoroutine);
+            _winterCoroutine = null;
+        }    
+
+        firstSource.Stop();
+        secondSource.Stop();
     }
 
     private void StartWrapper() 
-        => StartCoroutine(TickWinter());
+        => _winterCoroutine = StartCoroutine(TickWinter());
 
     IEnumerator FaderBeforeManager()
     {
@@ -96,5 +106,8 @@ public class TimeManager : MonoBehaviour, IManager
         }
 
         onWinterEnds.Invoke();
+        _winterCoroutine = null;
+
+        DisableManager();
     }
 }
