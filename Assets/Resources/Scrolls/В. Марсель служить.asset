@@ -29,7 +29,8 @@ MonoBehaviour:
       \u0445\u0432\u0430\u0442\u0430\u0435\u0442"
     consequence:
       id: 2
-      text: 
+      text: "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F - \u0432\u0430\u0448\u0435
+        \u043F\u0440\u0430\u0432\u043E"
       hasToCreateVassal: 0
       hasToLoseVassal: 0
     values: []

@@ -31,7 +31,7 @@ MonoBehaviour:
       \u043F\u0440\u0438 \u0434\u0432\u043E\u0440\u0435"
     consequence:
       id: 2
-      text: 
+      text: "\u0412 \u043D\u0451\u043C \u043D\u0435\u0442 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0441\u0442\u0438"
       hasToCreateVassal: 0
       hasToLoseVassal: 0
     values: []
