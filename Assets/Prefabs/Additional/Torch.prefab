@@ -446,7 +446,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.8624674
+  m_PointLightInnerRadius: 0.9
   m_PointLightOuterRadius: 7.2458496
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
