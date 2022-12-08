@@ -9,6 +9,8 @@ namespace Data
     {
         [Multiline] public string description;
         [Space]
+        public bool NeedVassal;
+        [Space]
         public Variant[] variants;
     }
 

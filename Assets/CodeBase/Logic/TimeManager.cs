@@ -26,9 +26,16 @@ public class TimeManager : MonoBehaviour, IManager
     public AudioSource firstSource;
     public AudioSource secondSource;
 
+    public ParticleSystem WinterParticleSystem;
+
     public event Action onWinterEnds;
 
+    private ParticleSystem.MainModule _winterParticleModule;
     private Coroutine _winterCoroutine;
+
+    private const float FirstWinterParticlesSpeed = 5f;
+    private const float SecondWinterParticlesSpeed = 7f;
+    private const float ThirdWinterParticlesSpeed = 9f;
 
     public void EnableManager(bool instant)
     {
@@ -48,6 +55,8 @@ public class TimeManager : MonoBehaviour, IManager
 
         firstSource.Stop();
         secondSource.Stop();
+
+        _winterParticleModule.startSpeed = FirstWinterParticlesSpeed;
     }
 
     private void StartWrapper() 
@@ -56,7 +65,10 @@ public class TimeManager : MonoBehaviour, IManager
     IEnumerator FaderBeforeManager()
     {
         yield return new WaitForSeconds(Constants.IntroTime);
-     
+
+        _winterParticleModule = WinterParticleSystem.main;
+        _winterParticleModule.startSpeed = FirstWinterParticlesSpeed;
+
         StartWrapper();
     }
 
@@ -96,12 +108,17 @@ public class TimeManager : MonoBehaviour, IManager
 
                 if (!secondSource.isPlaying)
                     secondSource.Play();
+
+                // Speed up winterParticles
+                _winterParticleModule.startSpeed = ThirdWinterParticlesSpeed;
             }
             else
             if (_currentTime >= winterFirstThreshold)
             {
                 if (!firstSource.isPlaying)
                     firstSource.Play();
+
+                _winterParticleModule.startSpeed = SecondWinterParticlesSpeed;
             }
         }
 

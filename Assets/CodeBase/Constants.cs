@@ -11,6 +11,8 @@
         public static bool IsGameStarted = false;
 
         public static float PingBeforeTrapDie = 2f;
+
+        public static int VassalsCount = 0;
     }
 
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using Data;
 using System.Collections;
+using Mono.Cecil;
 
 namespace Logic.Actors
 {
@@ -29,6 +30,7 @@ namespace Logic.Actors
                 count++;
             }
 
+            Constants.VassalsCount = count - 1;
             return count - 1;
         }
 
@@ -54,27 +56,21 @@ namespace Logic.Actors
 
         public void Kick()
         {
-            Transform last = null;
-
-            foreach (Transform spot in actorSpotsContainer)
+            // child(0) is king/
+            for (int i = actorSpotsContainer.childCount - 1; i > 0; i--)
             {
-                if (spot.childCount == 0)
+                Transform spot = actorSpotsContainer.GetChild(i);
+                if (spot.childCount != 0)
                 {
-                    if (last != null)
+                    if (spot.GetChild(0).TryGetComponent(out Unit unit))
                     {
-                        Unit unit = last.GetChild(0).GetComponent<Unit>();
-
-                        if (unit.isKing)
-                            break;
-
                         unit.Run();
+                        Constants.VassalsCount--;
 
                         VassalDeletedEvent?.Invoke();
-                        break;
+                        return;
                     }
                 }
-
-                last = spot;
             }
         }
 
@@ -99,6 +95,7 @@ namespace Logic.Actors
             StartCoroutine(ShowVassalNextFrame(vassalSprite));
             // Remove the bug with sprite jiggling on instantiate
 
+            Constants.VassalsCount++;
             VassalSpawnedEvent?.Invoke();
         }
 

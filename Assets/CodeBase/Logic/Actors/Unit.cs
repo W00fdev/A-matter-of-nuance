@@ -86,6 +86,9 @@ namespace Logic.Actors
 
         public void Kill(Unit victim, Transform cloud)
         {
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("run") == true)
+                return;
+
             _animator.SetTrigger("betray");
             _lastVictim = victim;
             _lastCloud = cloud;
@@ -105,6 +108,9 @@ namespace Logic.Actors
 
         public void Betray()
         {
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("run") == true)
+                return;
+
             _animator.SetTrigger("blood");
             blood.Play();
         }

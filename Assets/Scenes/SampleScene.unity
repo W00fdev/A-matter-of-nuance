@@ -8037,6 +8037,7 @@ MonoBehaviour:
   maxSpeed: 10
   firstSource: {fileID: 1281781691}
   secondSource: {fileID: 1281781690}
+  WinterParticleSystem: {fileID: 1093193090}
 --- !u!82 &1281781690
 AudioSource:
   m_ObjectHideFlags: 0

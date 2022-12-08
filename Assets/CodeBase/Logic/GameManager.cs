@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour, IManager
 
     public void OnLose()
     {
+        Constants.VassalsCount = 0;
         DefeatScreen.SetActive(true);
         lose.Play();
         main.Stop();
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour, IManager
 
     public void OnWin()
     {
+        Constants.VassalsCount = 0;
         WinScreen.SetActive(true);
         win.Play();
         main.Stop();

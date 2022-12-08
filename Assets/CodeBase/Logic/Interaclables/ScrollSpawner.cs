@@ -13,7 +13,7 @@ namespace Logic.Interactables
 
         public VassalSpawner vassalSpawner;
 
-        private RandomizedCycle<ScrollData> _dataCycle;
+        private RandomizedCycleScrolls _dataCycle;
 
         private void Start()
         {
