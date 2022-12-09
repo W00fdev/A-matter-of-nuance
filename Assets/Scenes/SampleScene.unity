@@ -123,82 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &17118003
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 17118004}
-  - component: {fileID: 17118006}
-  - component: {fileID: 17118005}
-  m_Layer: 0
-  m_Name: Block
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &17118004
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17118003}
-  m_LocalRotation: {x: -0, y: -0, z: 0.34243244, w: -0.9395425}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 182730023}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40.05}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69.91, y: -54.74}
-  m_SizeDelta: {x: 13.93, y: 113.75}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &17118005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17118003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.5377358, g: 0.16487184, b: 0.16931067, a: 0.99215686}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &17118006
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17118003}
-  m_CullTransparentMesh: 1
 --- !u!1 &32732964
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,8 +514,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 17118004}
+  m_Children: []
   m_Father: {fileID: 1183160673}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8547,7 +8470,7 @@ MonoBehaviour:
   TutorialShowDelay: 1
   TutorialHideDelay: 30
   SpeedByVassal: 0.4
-  ResourcesMultuplierByVassal: 0.25
+  ResourcesMultuplierByVassal: 0.21
   ResourcesMultiplier: 1
   win: {fileID: 1681127391}
   lose: {fileID: 1250981965}
@@ -9213,7 +9136,7 @@ MonoBehaviour:
     \u0432\u0430\u0448\u0438 \u0432\u0430\u0441\u0441\u0430\u043B\u044B, \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0440\u0443\u0447\u043D\u043E
     \u0438\u043B\u0438 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u043B\u043E\u0432\u0443\u0448\u0435\u043A.\r\n\r\n\u0414\u0430
     \u043F\u043E\u043C\u043E\u0436\u0435\u0442 \u043D\u0430\u043C \u0432\u0441\u0435\u043C
-    \u0431\u043E\u0433!\r\n"
+    \u0411\u043E\u0433!\r\n"
   _speed: 90
   ClickAfterFullShown:
     m_PersistentCalls:
@@ -9300,9 +9223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanMultiplyIncreasing: 1
   CanMultiplyDecreasing: 0
-  Religion: 48
-  Army: 48
-  Food: 48
+  Religion: 46
+  Army: 46
+  Food: 46
   MaxResource: 100
   CriticalResource: 3
   WinType: 2
